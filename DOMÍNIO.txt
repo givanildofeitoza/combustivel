@@ -144,6 +144,8 @@ CREATE TABLE Tanque (
 );
 
 -- Tabela Abastecimentos
+
+
 CREATE TABLE Abastecimentos (
     id INTEGER PRIMARY KEY,
     data DATE,
