@@ -1,0 +1,156 @@
+DOMÍNIO
+ *bomba
+     id : int
+     NomeBomba : string
+     idTanque : int
+ 
+ *combustivel     
+     id : int
+     TipoCombustivel : string         
+
+ *Tanque
+     id : int
+     NomeTanque : string
+     idCombustivel : int
+
+*abastecimentos
+    id : int
+    data : Date
+    valor : double
+    imposto : double
+    idBomba : int
+
+MODELS
+
+unit ModeloBomba;
+
+interface
+
+type
+  TBomba = class
+  private
+    FId: Integer;
+    FNomeBomba: string;
+    FIdTanque: Integer;
+  public
+    property Id: Integer read FId write FId;
+    property NomeBomba: string read FNomeBomba write FNomeBomba;
+    property IdTanque: Integer read FIdTanque write FIdTanque;
+  end;
+
+implementation
+
+// Implementação do modelo aqui, se necessário
+
+end.
+
+------->
+
+unit ModeloCombustivel;
+
+interface
+
+type
+  TCombustivel = class
+  private
+    FId: Integer;
+    FTipoCombustivel: string;
+  public
+    property Id: Integer read FId write FId;
+    property TipoCombustivel: string read FTipoCombustivel write FTipoCombustivel;
+  end;
+
+implementation
+
+// Implementação do modelo aqui, se necessário
+
+end.
+
+----->
+
+
+unit ModeloTanque;
+
+interface
+
+type
+  TTanque = class
+  private
+    FId: Integer;
+    FNomeTanque: string;
+    FIdCombustivel: Integer;
+  public
+    property Id: Integer read FId write FId;
+    property NomeTanque: string read FNomeTanque write FNomeTanque;
+    property IdCombustivel: Integer read FIdCombustivel write FIdCombustivel;
+  end;
+
+implementation
+
+// Implementação do modelo aqui, se necessário
+
+end.
+
+----->
+
+
+unit ModeloAbastecimentos;
+
+interface
+
+type
+  TAbastecimentos = class
+  private
+    FId: Integer;
+    FData: TDate;
+    FValor: Double;
+    FImposto: Double;
+    FIdBomba: Integer;
+  public
+    property Id: Integer read FId write FId;
+    property Data: TDate read FData write FData;
+    property Valor: Double read FValor write FValor;
+    property Imposto: Double read FImposto write FImposto;
+    property IdBomba: Integer read FIdBomba write FIdBomba;
+  end;
+
+implementation
+
+// Implementação do modelo aqui, se necessário
+
+end.
+
+
+#banco de dados
+
+-- Tabela Bomba
+CREATE TABLE Bomba (
+    id INTEGER PRIMARY KEY,
+    NomeBomba TEXT,
+    idTanque INTEGER
+);
+
+-- Tabela Combustivel
+CREATE TABLE Combustivel (
+    id INTEGER PRIMARY KEY,
+    TipoCombustivel TEXT
+);
+
+-- Tabela Tanque
+CREATE TABLE Tanque (
+    id INTEGER PRIMARY KEY,
+    NomeTanque TEXT,
+    idCombustivel INTEGER
+);
+
+-- Tabela Abastecimentos
+CREATE TABLE Abastecimentos (
+    id INTEGER PRIMARY KEY,
+    data DATE,
+    valor REAL,
+    imposto REAL,
+    idBomba INTEGER
+);
+
+
+    
