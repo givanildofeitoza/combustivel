@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{53754389-437F-4A78-A495-724E9C3A9BEE}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="MVPCombustivelProjeto.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\MVPCombustivelProjetoTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="MVPCombustivelProjeto">
+        <MSBuild Projects="MVPCombustivelProjeto.dproj"/>
+    </Target>
+    <Target Name="MVPCombustivelProjeto:Clean">
+        <MSBuild Projects="MVPCombustivelProjeto.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MVPCombustivelProjeto:Make">
+        <MSBuild Projects="MVPCombustivelProjeto.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MVPCombustivelProjetoTests">
+        <MSBuild Projects="Test\MVPCombustivelProjetoTests.dproj"/>
+    </Target>
+    <Target Name="MVPCombustivelProjetoTests:Clean">
+        <MSBuild Projects="Test\MVPCombustivelProjetoTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MVPCombustivelProjetoTests:Make">
+        <MSBuild Projects="Test\MVPCombustivelProjetoTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="MVPCombustivelProjeto;MVPCombustivelProjetoTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="MVPCombustivelProjeto:Clean;MVPCombustivelProjetoTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="MVPCombustivelProjeto:Make;MVPCombustivelProjetoTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

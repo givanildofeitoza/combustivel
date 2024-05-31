@@ -10,6 +10,7 @@ type
 
 TAbastecimentoDTO = class
  private
+    FId : Integer;
     FData: TDate;
     FValor: Double;
     FLitros: Double;
@@ -18,6 +19,7 @@ TAbastecimentoDTO = class
     FBomba : TBomba;
     FTanque : TTanque;
   public
+    property Id: integer read FId write FId;
     property Data: TDate read FData write FData;
     property Valor: Double read FValor write FValor;
     property Litros: Double read FLitros write FLitros;
@@ -32,12 +34,11 @@ TAbastecimentoServico=class
         FBombaRepositorio : TBombaRepositorio;
         FTanqueRepositorio : TTanqueRepositorio;
         FAbastecimentoRepositorio : TAbastecimentoRepositorio;
-        function calcularImposto(pBaseDeCalculo,pAliquota : Double):Double;
      public
-        function Abastecer(pAbastecimento : TAbastecimentoDTO): Boolean;
+        function Abastecer(pAbastecimento : TAbastecimentoDTO): TAbastecimentoDTO;
         function ObterAbastecimentoCompleto(Id : integer) : TAbastecimentoDTO;
         function ObterAbastecimentoCompletoPorData(pDataInicio,pDataFim : TDate) : TObjectList<TAbastecimentoDTO>;
-
+        function calcularImposto(pBaseDeCalculo,pAliquota : Double):Double;
        constructor Create(pBombaRepositorio : TBombaRepositorio;
         pTanqueRepositorio : TTanqueRepositorio;
         pAbastecimentoRepositorio : TAbastecimentoRepositorio);
@@ -70,8 +71,16 @@ var
 begin
    AbastecimentoDTO := TAbastecimentoDTO.Create;
 
-   Abastecimento := FAbastecimentoRepositorio.ObeterPorId(Id);
-   bomba
+   Abastecimento         := FAbastecimentoRepositorio.ObeterPorId(Id);
+   AbastecimentoDTO.FId  :=  Abastecimento.Id;
+   AbastecimentoDTO.Data    :=  Abastecimento.Data;
+   AbastecimentoDTO.Valor   :=  Abastecimento.Valor;
+   AbastecimentoDTO.Litros  := Abastecimento.Litros;
+   AbastecimentoDTO.Imposto := Abastecimento.Imposto;
+   AbastecimentoDTO.FBomba  :=  FBombaRepositorio.ObterPorId(Abastecimento.IdBomba);
+   AbastecimentoDTO.Tanque  :=  FTanqueRepositorio.ObterPorId(AbastecimentoDTO.FBomba.IdTanque);
+
+   Result := AbastecimentoDTO;
 end;
 
 function TAbastecimentoServico.ObterAbastecimentoCompletoPorData(pDataInicio,
@@ -81,7 +90,7 @@ begin
 end;
 
 function TAbastecimentoServico.Abastecer(
-  pAbastecimento: TAbastecimentoDTO): Boolean;
+  pAbastecimento: TAbastecimentoDTO): TAbastecimentoDTO;
  var
    bomba : TBomba;
    tanque : TTanque;
@@ -93,12 +102,16 @@ begin
      abastecimento.Litros  :=  pAbastecimento.Litros;
      abastecimento.Aliquota:=  13.00;
      abastecimento.Imposto :=  calcularImposto(abastecimento.Valor,abastecimento.Aliquota);
-     abastecimento.Valor   :=  pAbastecimento.Valor + abastecimento.Imposto;
+     abastecimento.Valor   :=  pAbastecimento.Valor;
      try
-        FTanqueRepositorio.Adicionar(abastecimento);
+        FAbastecimentoRepositorio.GerarAbastecimento(abastecimento);
      finally
         abastecimento.Free;
      end;
+
+     pAbastecimento.Imposto := abastecimento.Imposto;
+
+     Result := pAbastecimento;
 end;
 
 function TAbastecimentoServico.calcularImposto(pBaseDeCalculo,

@@ -32,7 +32,7 @@ end;
 procedure TAbastecimentoRepositorio.GerarAbastecimento(
   pAbastecimento: TAbastecimento);
 begin
-   pAbastecimento.validar;
+ //  pAbastecimento.validar;
    try
       FSQLQuery.SQL.Clear;
       FSQLQuery.SQL.Add('INSERT INTO ABASTECIMENTO(ALIQUOTA,LITROS,DATA,VALOR,IMPOSTO,IDBOMBA) VALUES (');
