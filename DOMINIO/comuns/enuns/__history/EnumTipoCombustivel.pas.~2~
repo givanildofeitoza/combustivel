@@ -1,0 +1,24 @@
+unit EnumTipoCombustivel;
+
+interface
+
+type ETipoCombustivel = (GASOLINA,DISEL);
+
+TCombustivelHelper = record helper for ETipoCombustivel
+public
+    function Nome: string;
+end;
+
+implementation
+
+{ TCombustivelHelper }
+
+function TCombustivelHelper.Nome: string;
+begin
+    case self of
+       0: Result := 'GASOLINA';
+       1: Result := 'DISEL';
+    end;
+end;
+
+end.

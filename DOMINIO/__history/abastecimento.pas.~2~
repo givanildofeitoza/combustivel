@@ -1,0 +1,19 @@
+unit abastecimento;
+
+interface
+
+type
+  TBomba = class
+  private
+    FId: Integer;
+    FNomeBomba: string;
+    FIdTanque: Integer;
+  public
+    property Id: Integer read FId write FId;
+    property NomeBomba: string read FNomeBomba write FNomeBomba;
+    property IdTanque: Integer read FIdTanque write FIdTanque;
+  end;
+
+implementation
+
+end.

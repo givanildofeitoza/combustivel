@@ -1,0 +1,38 @@
+unit tanque;
+
+interface
+
+uses
+  EnumTipoCombustivel;
+
+type
+  TTanque = class
+  private
+    FId: Integer;
+    FNomeTanque: string;
+    FCombustivel: ETipoCombustivel;
+  public
+    property Id: Integer read FId write FId;
+    property NomeTanque: string read FNomeTanque write FNomeTanque;
+    property Combustivel: ETipoCombustivel read FCombustivel write FCombustivel;
+
+    procedure Validar;
+  end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+{ TTanque }
+
+procedure TTanque.Validar;
+begin
+    if FNomeTanque = string.empty then
+       raise Exception.Create('Nome do tanque não  pode ser vazio!');
+
+    if FCombustivel.Nome = string.empty then
+       raise Exception.Create('Combustível não  pode ser vazio!');
+end;
+
+end.

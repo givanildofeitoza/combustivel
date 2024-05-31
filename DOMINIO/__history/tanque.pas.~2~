@@ -1,0 +1,20 @@
+unit tanque;
+
+interface
+
+type
+  TTanque = class
+  private
+    FId: Integer;
+    FNomeTanque: string;
+    FIdCombustivel: Integer;
+  public
+    property Id: Integer read FId write FId;
+    property NomeTanque: string read FNomeTanque write FNomeTanque;
+    property IdCombustivel: Integer read FIdCombustivel write FIdCombustivel;
+  end;
+
+
+implementation
+
+end.

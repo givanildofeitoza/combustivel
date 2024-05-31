@@ -13,4 +13,13 @@ object Form2: TForm2
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object SQLQuery1: TSQLQuery
+    Params = <>
+    Left = 400
+    Top = 168
+  end
+  object SQLConnection1: TSQLConnection
+    Left = 432
+    Top = 120
+  end
 end
