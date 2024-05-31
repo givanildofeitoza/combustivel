@@ -57,14 +57,14 @@ begin
     FSQLQuery.SQL.Add('SELECT * FROM ABASTECIMENTO');
     FSQLQuery.Open();
 
-    if not FSQLQuery.FieldByName('IDBOMBA').AsString = 0 then
+    if not (FSQLQuery.FieldByName('IDBOMBA').AsInteger = 0) then
     begin
         FSQLQuery.First;
         while not FSQLQuery.Eof do
         begin
           abastecimento    := TAbastecimento.Create;
           abastecimento.Id := FSQLQuery.FieldByName('ID').AsInteger;
-          abastecimento.Data   := FormatDateTime('dd/mm/yyyyy',FSQLQuery.FieldByName('DATA').AsDateTime);
+          abastecimento.Data   := FSQLQuery.FieldByName('DATA').AsDateTime;
           abastecimento.Valor  := FSQLQuery.FieldByName('VALOR').AsFloat;
           abastecimento.Imposto  := FSQLQuery.FieldByName('IMPOSTO').AsFloat;
           abastecimento.IdBomba  := FSQLQuery.FieldByName('IDBOMBA').AsInteger;
@@ -89,14 +89,14 @@ begin
        +FormatDateTime('yyyy-mm-dd',pDataFinal)+'"');
     FSQLQuery.Open();
 
-    if not FSQLQuery.FieldByName('IDBOMBA').AsString = 0 then
+    if not (FSQLQuery.FieldByName('IDBOMBA').AsInteger = 0) then
     begin
         FSQLQuery.First;
         while not FSQLQuery.Eof do
         begin
           abastecimento    := TAbastecimento.Create;
           abastecimento.Id := FSQLQuery.FieldByName('ID').AsInteger;
-          abastecimento.Data   := FormatDateTime('dd/mm/yyyyy',FSQLQuery.FieldByName('DATA').AsDateTime);
+          abastecimento.Data   := FSQLQuery.FieldByName('DATA').AsDateTime;
           abastecimento.Valor  := FSQLQuery.FieldByName('VALOR').AsFloat;
           abastecimento.Imposto  := FSQLQuery.FieldByName('IMPOSTO').AsFloat;
           abastecimento.IdBomba  := FSQLQuery.FieldByName('IDBOMBA').AsInteger;
@@ -119,7 +119,7 @@ begin
 
     abastecimento    := TAbastecimento.Create;
     abastecimento.Id := FSQLQuery.FieldByName('ID').AsInteger;
-    abastecimento.Data   := FormatDateTime('dd/mm/yyyyy',FSQLQuery.FieldByName('DATA').AsDateTime);
+    abastecimento.Data   := FSQLQuery.FieldByName('DATA').AsDateTime;
     abastecimento.Valor  := FSQLQuery.FieldByName('VALOR').AsFloat;
     abastecimento.Imposto  := FSQLQuery.FieldByName('IMPOSTO').AsFloat;
     abastecimento.IdBomba  := FSQLQuery.FieldByName('IDBOMBA').AsInteger;

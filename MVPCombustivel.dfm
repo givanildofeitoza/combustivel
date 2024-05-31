@@ -13,12 +13,29 @@ object Form2: TForm2
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object SQLQuery1: TSQLQuery
-    Params = <>
-    Left = 400
-    Top = 168
+  object Button1: TButton
+    Left = 16
+    Top = 104
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 0
+    OnClick = Button1Click
   end
-  object SQLConnection1: TSQLConnection
+  object qrPadrao: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = ConexaoSQLITE
+    Left = 512
+    Top = 120
+  end
+  object ConexaoSQLITE: TSQLConnection
+    ConnectionName = 'SQLITECONNECTION'
+    DriverName = 'Sqlite'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverName=Sqlite'
+      'Database=combustivel.db')
     Left = 432
     Top = 120
   end

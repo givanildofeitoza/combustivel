@@ -55,9 +55,9 @@ begin
     tanque.NomeTanque := FSQLQuery.FieldByName('NOMETANQUE').AsString;
 
     if FSQLQuery.FieldByName('COMBUSTIVEL').AsString = 'GASOLINA'  then
-       tanque.Combustivel = ETipoCombustivel.GASOLINA
+       tanque.Combustivel := ETipoCombustivel.GASOLINA
     else if FSQLQuery.FieldByName('COMBUSTIVEL').AsString = 'DISEL'then
-       tanque.Combustivel = ETipoCombustivel.DISEL;
+       tanque.Combustivel := ETipoCombustivel.DISEL;
 
     Result := tanque;
 end;
@@ -82,9 +82,9 @@ begin
           tanque.NomeTanque := FSQLQuery.FieldByName('NOMETANQUE').AsString;
 
           if FSQLQuery.FieldByName('COMBUSTIVEL').AsString = 'GASOLINA'  then
-             tanque.Combustivel = ETipoCombustivel.GASOLINA
+             tanque.Combustivel := ETipoCombustivel.GASOLINA
           else if FSQLQuery.FieldByName('COMBUSTIVEL').AsString = 'DISEL'then
-             tanque.Combustivel = ETipoCombustivel.DISEL;
+             tanque.Combustivel := ETipoCombustivel.DISEL;
 
           tanqueLista.Add(tanque);
 

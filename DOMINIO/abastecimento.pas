@@ -29,10 +29,10 @@ implementation
 
 procedure TAbastecimento.Validar;
 begin
-    if not FValor > 0 then
+    if not (FValor > 0) then
       raise Exception.Create('Valor deve ser maior que zero!');
 
-    if not FImposto = 13 then
+    if not (FImposto = 13) then
       raise Exception.Create('Imposto deve ser 13%!');
 
     if FIdBomba = 0 then

@@ -124,34 +124,29 @@ end.
 #banco de dados
 
 -- Tabela Bomba
-CREATE TABLE Bomba (
-    id INTEGER PRIMARY KEY,
-    NomeBomba TEXT,
-    idTanque INTEGER
+CREATE TABLE BOMBA (
+    ID INTEGER PRIMARY KEY,
+    NOMEBOMBA TEXT,
+    IDTANQUE INTEGER
 );
 
--- Tabela Combustivel
-CREATE TABLE Combustivel (
-    id INTEGER PRIMARY KEY,
-    TipoCombustivel TEXT
-);
 
 -- Tabela Tanque
-CREATE TABLE Tanque (
-    id INTEGER PRIMARY KEY,
-    NomeTanque TEXT,
-    idCombustivel INTEGER
+CREATE TABLE TANQUE (
+    ID INTEGER PRIMARY KEY,
+    NOMETANQUE TEXT,
+    IDCOMBUSTIVEL INTEGER
 );
 
 -- Tabela Abastecimentos
 
 
-CREATE TABLE Abastecimentos (
-    id INTEGER PRIMARY KEY,
-    data DATE,
-    valor REAL,
-    imposto REAL,
-    idBomba INTEGER
+CREATE TABLE ABASTECIMENTO (
+    ID INTEGER PRIMARY KEY,
+    DATA DATE,
+    VALOR REAL,
+    IMPOSTO REAL,
+    IDBOMBA INTEGER
 );
 
 
