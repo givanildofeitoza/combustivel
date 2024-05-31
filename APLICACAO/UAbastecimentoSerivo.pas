@@ -4,7 +4,7 @@ interface
 
 uses
   UBombaRepositorio, UTanqueRepositorio, UAbastecimentoRepositorio, tanque,
-  bomba;
+  bomba,System.Generics.Collections;
 
 type
 
@@ -34,7 +34,9 @@ TAbastecimentoServico=class
         FAbastecimentoRepositorio : TAbastecimentoRepositorio;
         function calcularImposto(pBaseDeCalculo,pAliquota : Double):Double;
      public
-        function Abastecer(pAbastecimento : TAbastecimentoDTO):Boolean;
+        function Abastecer(pAbastecimento : TAbastecimentoDTO): Boolean;
+        function ObterAbastecimentoCompleto(Id : integer) : TAbastecimentoDTO;
+        function ObterAbastecimentoCompletoPorData(pDataInicio,pDataFim : TDate) : TObjectList<TAbastecimentoDTO>;
 
        constructor Create(pBombaRepositorio : TBombaRepositorio;
         pTanqueRepositorio : TTanqueRepositorio;
@@ -56,6 +58,26 @@ begin
      FBombaRepositorio := pBombaRepositorio;
      FTanqueRepositorio := pTanqueRepositorio;
      FAbastecimentoRepositorio := pAbastecimentoRepositorio;
+end;
+
+function TAbastecimentoServico.ObterAbastecimentoCompleto(
+  Id: integer): TAbastecimentoDTO;
+var
+  AbastecimentoDTO : TAbastecimentoDTO;
+  Abastecimento :  TAbastecimento;
+  bomba : TBomba;
+  tanque : TTanque;
+begin
+   AbastecimentoDTO := TAbastecimentoDTO.Create;
+
+   Abastecimento := FAbastecimentoRepositorio.ObeterPorId(Id);
+   bomba
+end;
+
+function TAbastecimentoServico.ObterAbastecimentoCompletoPorData(pDataInicio,
+  pDataFim: TDate): TObjectList<TAbastecimentoDTO>;
+begin
+
 end;
 
 function TAbastecimentoServico.Abastecer(

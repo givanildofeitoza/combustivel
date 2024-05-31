@@ -3,7 +3,8 @@ unit UAbastecimentoSerivo;
 interface
 
 uses
-  UBombaRepositorio, UTanqueRepositorio, UAbastecimentoRepositorio;
+  UBombaRepositorio, UTanqueRepositorio, UAbastecimentoRepositorio, tanque,
+  bomba;
 
 type
 
@@ -14,12 +15,16 @@ TAbastecimentoDTO = class
     FLitros: Double;
     FImposto: Double;
     FIdBomba: Integer;
+    FBomba : TBomba;
+    FTanque : TTanque;
   public
     property Data: TDate read FData write FData;
     property Valor: Double read FValor write FValor;
     property Litros: Double read FLitros write FLitros;
     property Imposto: Double read FImposto write FImposto;
     property IdBomba: Integer read FIdBomba write FIdBomba;
+    property Bomba: TBomba read FBomba write FBomba;
+    property Tanque: TTanque read FTanque write FTanque;
 end;
 
 TAbastecimentoServico=class
@@ -40,7 +45,7 @@ end;
 implementation
 
 uses
-  bomba, tanque, abastecimento;
+  abastecimento;
 
 { TAbastecimentoServico }
 
@@ -60,15 +65,18 @@ function TAbastecimentoServico.Abastecer(
    tanque : TTanque;
    abastecimento : TAbastecimento;
 begin
-     //bomba  := FBombaRepositorio.ObterPorId(pAbastecimento.FIdBomba);
-     //tanque := FTanqueRepositorio.ObterPorId(bomba.IdTanque);
      abastecimento         :=  TAbastecimento.Create;
-     abastecimento.Data    :=  pAbastecimento.FData;
-     abastecimento.IdBomba :=  bomba.Id;
-     abastecimento.Litros  :=  pAbastecimento.FLitros;
+     abastecimento.Data    :=  pAbastecimento.Data;
+     abastecimento.IdBomba :=  pAbastecimento.IdBomba;
+     abastecimento.Litros  :=  pAbastecimento.Litros;
      abastecimento.Aliquota:=  13.00;
      abastecimento.Imposto :=  calcularImposto(abastecimento.Valor,abastecimento.Aliquota);
      abastecimento.Valor   :=  pAbastecimento.Valor + abastecimento.Imposto;
+     try
+        FTanqueRepositorio.Adicionar(abastecimento);
+     finally
+        abastecimento.Free;
+     end;
 end;
 
 function TAbastecimentoServico.calcularImposto(pBaseDeCalculo,
