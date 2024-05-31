@@ -32,7 +32,7 @@ type
 
  TMockAbastecimentoRepositorio = class(TAbastecimentoRepositorio)
  public
-    function ObterPorId(Id: Integer): TAbastecimento; virtual;
+    procedure GerarAbastecimento(Abastecimento: TAbastecimento); override;
     // Implemente outros métodos necessários para o MOC
  end;
 
@@ -74,11 +74,9 @@ end;
 
 { TMockAbastecimentoRepositorio }
 
-function TMockAbastecimentoRepositorio.ObterPorId(Id: Integer): TAbastecimento;
+procedure TMockAbastecimentoRepositorio.GerarAbastecimento(Abastecimento: TAbastecimento);  override;
 begin
-  Result := TAbastecimento.Create;
-  Result.Id := Id;
-  Result.Valor := 100;
+  TAbastecimento.Create;
 end;
 
 
@@ -89,7 +87,9 @@ var
   MockAbastecimentoRepositorio : TMockAbastecimentoRepositorio;
   Query : TSQLQuery;
 begin
-  FAbastecimentoServico := TAbastecimentoServico.Create(MockBombaRepositorio.Create(Query),
+   Query := TSQLQuery.Create(nil);
+   MockBombaRepositorio := TMockBombaRepositorio.Create(Query);
+  FAbastecimentoServico := TAbastecimentoServico.Create(MockBombaRepositorio,
                                                         MockTanqueRepositorio.Create(Query),
                                                         TMockAbastecimentoRepositorio.Create(Query));
 end;

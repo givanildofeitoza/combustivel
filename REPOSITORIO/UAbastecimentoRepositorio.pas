@@ -9,7 +9,7 @@ type TAbastecimentoRepositorio = class
   private
     FSQLQuery : TSQLQuery;
   public
-    procedure GerarAbastecimento(pAbastecimento : TAbastecimento);
+    procedure GerarAbastecimento(pAbastecimento : TAbastecimento); virtual;
     function ObeterPorId(pId : integer) : TAbastecimento;
     function ObeterPorData(pDataInicial,pDataFinal : TDate) : TObjectList<TAbastecimento>;
     function ObeterPorBomda(pDataInicial,pDataFinal : TDate) : TObjectList<TAbastecimento>;

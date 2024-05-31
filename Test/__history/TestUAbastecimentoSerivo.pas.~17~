@@ -20,19 +20,19 @@ type
 
  TMockBombaRepositorio = class(TBombaRepositorio)
  public
-    function ObterPorId(Id: Integer): TBomba; virtual;
+    function ObterPorId(Id: Integer): TBomba;
     // Implemente outros métodos necessários para o MOC
  end;
 
  TMockTanqueRepositorio = class(TTanqueRepositorio)
  public
-    function ObterPorId(Id: Integer): TTanque; virtual;
+    function ObterPorId(Id: Integer): TTanque;
     // Implemente outros métodos necessários para o MOC
  end;
 
  TMockAbastecimentoRepositorio = class(TAbastecimentoRepositorio)
  public
-    function ObterPorId(Id: Integer): TAbastecimento; virtual;
+    procedure GerarAbastecimento(Abastecimento: TAbastecimento);
     // Implemente outros métodos necessários para o MOC
  end;
 
@@ -74,11 +74,9 @@ end;
 
 { TMockAbastecimentoRepositorio }
 
-function TMockAbastecimentoRepositorio.ObterPorId(Id: Integer): TAbastecimento;
+procedure TMockAbastecimentoRepositorio.GerarAbastecimento(Abastecimento: TAbastecimento);
 begin
-  Result := TAbastecimento.Create;
-  Result.Id := Id;
-  Result.Valor := 100;
+  TAbastecimento.Create;
 end;
 
 

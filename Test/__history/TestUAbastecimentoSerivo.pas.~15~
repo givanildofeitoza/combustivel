@@ -20,19 +20,19 @@ type
 
  TMockBombaRepositorio = class(TBombaRepositorio)
  public
-    function ObterPorId(Id: Integer): TBomba; override;
+    function ObterPorId(Id: Integer): TBomba; virtual;
     // Implemente outros métodos necessários para o MOC
  end;
 
  TMockTanqueRepositorio = class(TTanqueRepositorio)
  public
-    function ObterPorId(Id: Integer): TTanque; override;
+    function ObterPorId(Id: Integer): TTanque; virtual;
     // Implemente outros métodos necessários para o MOC
  end;
 
  TMockAbastecimentoRepositorio = class(TAbastecimentoRepositorio)
  public
-    function ObterPorId(Id: Integer): TAbastecimento; override;
+    procedure GerarAbastecimento(Abastecimento: TAbastecimento); override;
     // Implemente outros métodos necessários para o MOC
  end;
 
@@ -51,7 +51,7 @@ type
 implementation
 
 uses
-  Data.SqlExpr;
+  Data.SqlExpr, System.SysUtils;
 
 
 { TMockBombaRepositorio }
@@ -74,11 +74,9 @@ end;
 
 { TMockAbastecimentoRepositorio }
 
-function TMockAbastecimentoRepositorio.ObterPorId(Id: Integer): TAbastecimento;
+procedure TMockAbastecimentoRepositorio.GerarAbastecimento(Abastecimento: TAbastecimento);
 begin
-  Result := TAbastecimento.Create;
-  Result.Id := Id;
-  Result.Valor := 100;
+  TAbastecimento.Create;
 end;
 
 
@@ -89,7 +87,9 @@ var
   MockAbastecimentoRepositorio : TMockAbastecimentoRepositorio;
   Query : TSQLQuery;
 begin
-  FAbastecimentoServico := TAbastecimentoServico.Create(MockBombaRepositorio.Create(Query),
+   Query := TSQLQuery.Create(nil);
+   MockBombaRepositorio := TMockBombaRepositorio.Create(Query);
+  FAbastecimentoServico := TAbastecimentoServico.Create(MockBombaRepositorio,
                                                         MockTanqueRepositorio.Create(Query),
                                                         TMockAbastecimentoRepositorio.Create(Query));
 end;
@@ -116,8 +116,22 @@ var
   ReturnValue: TAbastecimentoDTO;
   pAbastecimento: TAbastecimentoDTO;
 begin
+   pAbastecimento:= TAbastecimentoDTO.Create;
+   pAbastecimento.Valor := 120;
+   pAbastecimento.Data  := now;
+   pAbastecimento.Litros := 20;
+   pAbastecimento.Imposto:= 15.60;
+   pAbastecimento.IdBomba := 1;
+
   // TODO: Setup method call parameters
   ReturnValue := FAbastecimentoServico.Abastecer(pAbastecimento);
+
+  CheckEquals(ReturnValue.Valor,pAbastecimento.Valor,'Valor difere');
+  CheckEquals(ReturnValue.Data,pAbastecimento.Data,'data difre');
+  CheckEquals(ReturnValue.Litros,pAbastecimento.Litros,'litros difere');
+  CheckEquals(ReturnValue.Imposto,pAbastecimento.Imposto);
+  CheckEquals(ReturnValue.IdBomba,pAbastecimento.IdBomba);
+
   // TODO: Validate method results
 end;
 

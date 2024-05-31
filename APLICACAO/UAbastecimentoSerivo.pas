@@ -101,7 +101,7 @@ begin
      abastecimento.IdBomba :=  pAbastecimento.IdBomba;
      abastecimento.Litros  :=  pAbastecimento.Litros;
      abastecimento.Aliquota:=  13.00;
-     abastecimento.Imposto :=  calcularImposto(abastecimento.Valor,abastecimento.Aliquota);
+     abastecimento.Imposto :=  calcularImposto(pAbastecimento.Valor,abastecimento.Aliquota);
      abastecimento.Valor   :=  pAbastecimento.Valor;
      try
         FAbastecimentoRepositorio.GerarAbastecimento(abastecimento);
