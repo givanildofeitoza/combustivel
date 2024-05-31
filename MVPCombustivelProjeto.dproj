@@ -93,6 +93,7 @@
         <DCCReference Include="REPOSITORIO\UBombaRepositorio.pas"/>
         <DCCReference Include="REPOSITORIO\UTanqueRepositorio.pas"/>
         <DCCReference Include="REPOSITORIO\UAbastecimentoRepositorio.pas"/>
+        <DCCReference Include="APLICACAO\UAbastecimentoSerivo.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

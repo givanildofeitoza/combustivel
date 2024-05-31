@@ -11,13 +11,17 @@ type
     FId: Integer;
     FData: TDate;
     FValor: Double;
+    FLitros: Double;
     FImposto: Double;
+    FAliquota: Double;
     FIdBomba: Integer;
   public
     property Id: Integer read FId write FId;
     property Data: TDate read FData write FData;
     property Valor: Double read FValor write FValor;
+    property Litros: Double read FLitros write FLitros;
     property Imposto: Double read FImposto write FImposto;
+    property Aliquota: Double read FAliquota write FAliquota;
     property IdBomba: Integer read FIdBomba write FIdBomba;
 
     procedure Validar;

@@ -9,7 +9,8 @@ uses
   EnumTipoCombustivel in 'DOMINIO\comuns\enuns\EnumTipoCombustivel.pas',
   UBombaRepositorio in 'REPOSITORIO\UBombaRepositorio.pas',
   UTanqueRepositorio in 'REPOSITORIO\UTanqueRepositorio.pas',
-  UAbastecimentoRepositorio in 'REPOSITORIO\UAbastecimentoRepositorio.pas';
+  UAbastecimentoRepositorio in 'REPOSITORIO\UAbastecimentoRepositorio.pas',
+  UAbastecimentoSerivo in 'APLICACAO\UAbastecimentoSerivo.pas';
 
 {$R *.res}
 
