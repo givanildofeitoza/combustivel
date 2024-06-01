@@ -17,7 +17,13 @@ program MVPCombustivelProjetoTests;
 uses
   DUnitTestRunner,
   TestUAbastecimentoSerivo in 'TestUAbastecimentoSerivo.pas',
-  UAbastecimentoSerivo in '..\APLICACAO\UAbastecimentoSerivo.pas';
+  UAbastecimentoSerivo in '..\APLICACAO\UAbastecimentoSerivo.pas',
+  UAbastecimentoRepositorio in '..\REPOSITORIO\UAbastecimentoRepositorio.pas',
+  UBombaRepositorio in '..\REPOSITORIO\UBombaRepositorio.pas',
+  UTanqueRepositorio in '..\REPOSITORIO\UTanqueRepositorio.pas',
+  abastecimento in '..\DOMINIO\abastecimento.pas',
+  bomba in '..\DOMINIO\bomba.pas',
+  tanque in '..\DOMINIO\tanque.pas';
 
 {$R *.RES}
 

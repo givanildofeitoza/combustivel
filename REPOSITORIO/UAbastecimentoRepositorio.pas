@@ -9,10 +9,10 @@ type TAbastecimentoRepositorio = class
   private
     FSQLQuery : TSQLQuery;
   public
-    procedure GerarAbastecimento(pAbastecimento : TAbastecimento); virtual;
     function ObeterPorId(pId : integer) : TAbastecimento;
     function ObeterPorData(pDataInicial,pDataFinal : TDate) : TObjectList<TAbastecimento>;
     function ObeterPorBomda(pDataInicial,pDataFinal : TDate) : TObjectList<TAbastecimento>;
+    procedure GerarAbastecimento(pAbastecimento : TAbastecimento); virtual;
 
     Constructor Create(pQuery : TSQLQuery);
 end;
@@ -29,10 +29,9 @@ begin
     FSQLQuery := pQuery;
 end;
 
-procedure TAbastecimentoRepositorio.GerarAbastecimento(
-  pAbastecimento: TAbastecimento);
+procedure TAbastecimentoRepositorio.GerarAbastecimento(pAbastecimento: TAbastecimento);
 begin
- //  pAbastecimento.validar;
+   pAbastecimento.validar;
    try
       FSQLQuery.SQL.Clear;
       FSQLQuery.SQL.Add('INSERT INTO ABASTECIMENTO(ALIQUOTA,LITROS,DATA,VALOR,IMPOSTO,IDBOMBA) VALUES (');

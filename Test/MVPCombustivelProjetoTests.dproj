@@ -91,6 +91,12 @@
         </DelphiCompile>
         <DCCReference Include="TestUAbastecimentoSerivo.pas"/>
         <DCCReference Include="..\APLICACAO\UAbastecimentoSerivo.pas"/>
+        <DCCReference Include="..\REPOSITORIO\UAbastecimentoRepositorio.pas"/>
+        <DCCReference Include="..\REPOSITORIO\UBombaRepositorio.pas"/>
+        <DCCReference Include="..\REPOSITORIO\UTanqueRepositorio.pas"/>
+        <DCCReference Include="..\DOMINIO\abastecimento.pas"/>
+        <DCCReference Include="..\DOMINIO\bomba.pas"/>
+        <DCCReference Include="..\DOMINIO\tanque.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -172,6 +178,7 @@
                 <TestFramework>DUnit / Delphi Win32</TestFramework>
                 <TestRunner>GUI</TestRunner>
                 <SourceProjectName>C:\givanildo\Projetos\COMBUSTIVEL\MVPCombustivelProjeto.dproj</SourceProjectName>
+                <TestProjectName/>
             </UnitTesting>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>

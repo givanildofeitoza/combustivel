@@ -92,8 +92,6 @@ end;
 function TAbastecimentoServico.Abastecer(
   pAbastecimento: TAbastecimentoDTO): TAbastecimentoDTO;
  var
-   bomba : TBomba;
-   tanque : TTanque;
    abastecimento : TAbastecimento;
 begin
      abastecimento         :=  TAbastecimento.Create;
@@ -103,13 +101,12 @@ begin
      abastecimento.Aliquota:=  13.00;
      abastecimento.Imposto :=  calcularImposto(pAbastecimento.Valor,abastecimento.Aliquota);
      abastecimento.Valor   :=  pAbastecimento.Valor;
+     abastecimento.Validar;
      try
         FAbastecimentoRepositorio.GerarAbastecimento(abastecimento);
      finally
         abastecimento.Free;
      end;
-
-     pAbastecimento.Imposto := abastecimento.Imposto;
 
      Result := pAbastecimento;
 end;

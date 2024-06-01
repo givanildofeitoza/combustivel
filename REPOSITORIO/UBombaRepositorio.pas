@@ -11,7 +11,7 @@ type TBombaRepositorio = class
   public
     procedure Adicionar(pBomba : TBomba);
     procedure Remover(pId : integer);
-    function ObterPorId(pId : integer) : TBomba;
+    function ObterPorId(pId : integer) : TBomba; virtual;
     function ObterTodas() : TObjectList<TBomba>;
 
     constructor Create(pSQLQuery : TSQLQuery);

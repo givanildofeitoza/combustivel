@@ -10,7 +10,7 @@ interface
     public
        procedure Adicionar(pTanque : TTanque);
        procedure Remover(pId : integer);
-       function ObterPorId(pId : integer) : TTanque;
+       function ObterPorId(pId : integer) : TTanque; virtual;
        function ObterTodas() : TObjectList<TTanque>;
 
        constructor Create(pSQLQuery : TSQLQuery);
