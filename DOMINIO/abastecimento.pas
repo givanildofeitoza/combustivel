@@ -38,6 +38,12 @@ begin
     if not (FValor > 0) then
       raise Exception.Create('Valor deve ser maior que zero!');
 
+    if not (FVunitario > 0) then
+      raise Exception.Create('Valor unitário deve ser maior que zero!');
+
+    if not (FImposto > 0) then
+      raise Exception.Create('Valor imposto deve ser maior que zero!');
+
     if not (FAliquota = 13) then
       raise Exception.Create('Aliquota deve ser 13%!');
 

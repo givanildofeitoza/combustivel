@@ -34,7 +34,8 @@ begin
    pAbastecimento.validar;
    try
       FSQLQuery.SQL.Clear;
-      FSQLQuery.SQL.Add('INSERT INTO ABASTECIMENTO(ALIQUOTA,LITROS,DATA,VALOR,IMPOSTO,IDBOMBA) VALUES (');
+      FSQLQuery.SQL.Add('INSERT INTO ABASTECIMENTO(VUNITARIO,ALIQUOTA,LITROS,DATA,VALOR,IMPOSTO,IDBOMBA) VALUES (');
+      FSQLQuery.SQL.Add(quotedstr(FloatToStr(pAbastecimento.Vunitario))+',');
       FSQLQuery.SQL.Add(quotedstr(FloatToStr(pAbastecimento.Aliquota))+',');
       FSQLQuery.SQL.Add(quotedstr(FloatToStr(pAbastecimento.Litros))+',');
       FSQLQuery.SQL.Add(quotedstr(FormatDateTime('yyyy-mm-dd',pAbastecimento.Data))+',');
@@ -67,7 +68,8 @@ begin
           abastecimento.Id := FSQLQuery.FieldByName('ID').AsInteger;
           abastecimento.Data   := FSQLQuery.FieldByName('DATA').AsDateTime;
           abastecimento.Litros := FSQLQuery.FieldByName('LITROS').AsFloat;
-          abastecimento.Aliquota := FSQLQuery.FieldByName('ALIQUOTA').AsFloat;
+          abastecimento.Aliquota  := FSQLQuery.FieldByName('ALIQUOTA').AsFloat;
+          abastecimento.Vunitario := FSQLQuery.FieldByName('VUNITARIO').AsFloat;
           abastecimento.Valor    := FSQLQuery.FieldByName('VALOR').AsFloat;
           abastecimento.Imposto  := FSQLQuery.FieldByName('IMPOSTO').AsFloat;
           abastecimento.IdBomba  := FSQLQuery.FieldByName('IDBOMBA').AsInteger;
@@ -102,7 +104,8 @@ begin
           abastecimento.Data   := FSQLQuery.FieldByName('DATA').AsDateTime;
           abastecimento.Valor  := FSQLQuery.FieldByName('VALOR').AsFloat;
           abastecimento.Litros := FSQLQuery.FieldByName('LITROS').AsFloat;
-          abastecimento.Imposto  := FSQLQuery.FieldByName('IMPOSTO').AsFloat;
+          abastecimento.Imposto   := FSQLQuery.FieldByName('IMPOSTO').AsFloat;
+          abastecimento.Vunitario := FSQLQuery.FieldByName('VUNITARIO').AsFloat;
           abastecimento.Aliquota := FSQLQuery.FieldByName('ALIQUOTA').AsFloat;
           abastecimento.IdBomba  := FSQLQuery.FieldByName('IDBOMBA').AsInteger;
           abastecimentoLista.Add(abastecimento);
@@ -126,7 +129,8 @@ begin
     abastecimento.Id := FSQLQuery.FieldByName('ID').AsInteger;
     abastecimento.Data   := FSQLQuery.FieldByName('DATA').AsDateTime;
     abastecimento.Valor  := FSQLQuery.FieldByName('VALOR').AsFloat;
-    abastecimento.Litros := FSQLQuery.FieldByName('LITROS').AsFloat;
+    abastecimento.Vunitario := FSQLQuery.FieldByName('VUNITARIO').AsFloat;
+    abastecimento.Litros    := FSQLQuery.FieldByName('LITROS').AsFloat;
     abastecimento.Imposto  := FSQLQuery.FieldByName('IMPOSTO').AsFloat;
     abastecimento.Aliquota := FSQLQuery.FieldByName('ALIQUOTA').AsFloat;
     abastecimento.IdBomba  := FSQLQuery.FieldByName('IDBOMBA').AsInteger;

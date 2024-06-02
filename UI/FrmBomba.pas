@@ -11,7 +11,7 @@ type
   T_FrmBomba = class(TForm)
     gridBomba: TStringGrid;
     Panel1: TPanel;
-    Button1: TButton;
+    btnincluir: TButton;
     pnlCadBomba: TPanel;
     Label1: TLabel;
     Label2: TLabel;
@@ -22,11 +22,15 @@ type
     TxtIdTanque: TEdit;
     txtNomeTanque: TEdit;
     BitBtn3: TBitBtn;
+    btnSelecionar: TBitBtn;
     procedure FormShow(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnincluirClick(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
+    procedure gridBombaSelectCell(Sender: TObject; ACol, ARow: Integer;
+      var CanSelect: Boolean);
+    procedure btnSelecionarClick(Sender: TObject);
   private
     { Private declarations }
      FBombaServico : TBombaServico;
@@ -34,6 +38,8 @@ type
      procedure AtualizarGrid(pBombas : TObjectList<TBomba>);
   public
     { Public declarations }
+    linha : integer;
+    bombaDTO : TBomba;
     constructor Create(AOwner: TComponent; pBombaServico : TBombaServico; pTanquServico: TTanqueServico); overload;
   end;
 
@@ -98,8 +104,19 @@ begin
    _FrmTanque.Release;
 end;
 
-procedure T_FrmBomba.Button1Click(Sender: TObject);
+procedure T_FrmBomba.btnSelecionarClick(Sender: TObject);
 begin
+   if linha > 0 then
+   begin
+      bombaDTO.Id := StrToInt(gridBomba.Cells[0,linha]);
+      bombaDTO.NomeBomba := gridBomba.Cells[1,linha];
+      ModalResult := -1;
+   end;
+end;
+
+procedure T_FrmBomba.btnincluirClick(Sender: TObject);
+begin
+    TxtNomeBomba.Text:= string.Empty;
     pnlCadBomba.Align := alClient;
     pnlCadBomba.Visible := True;
 end;
@@ -110,11 +127,18 @@ begin
    inherited Create(AOwner);
    FBombaServico  := pBombaServico;
    FTanquServico  := pTanquServico;
+   bombaDTO := TBomba.Create;
 end;
 
 procedure T_FrmBomba.FormShow(Sender: TObject);
 begin
     AtualizarGrid(FBombaServico.ObterTodasAsBombas);
+end;
+
+procedure T_FrmBomba.gridBombaSelectCell(Sender: TObject; ACol, ARow: Integer;
+  var CanSelect: Boolean);
+begin
+    linha := aRow;
 end;
 
 end.

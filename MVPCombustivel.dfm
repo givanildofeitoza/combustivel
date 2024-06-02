@@ -48,6 +48,7 @@ object Form2: TForm2
     Height = 41
     Caption = 'ABASTECIMENTO'
     TabOrder = 3
+    OnClick = BitBtn3Click
   end
   object qrPadrao: TSQLQuery
     MaxBlobSize = -1

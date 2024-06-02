@@ -21,6 +21,7 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
   private
     { Private declarations }
     FBombaRepositorio : TbombaRepositorio;
@@ -39,7 +40,7 @@ var
 implementation
 
 uses
-  bomba, FrmTanque, FrmBomba;
+  bomba, FrmTanque, FrmBomba, FrmAbastecimento;
 
 {$R *.dfm}
 
@@ -55,6 +56,13 @@ begin
    _FrmTanque := T_FrmTanque.Create(Self,FTanquServico);
    _FrmTanque.ShowModal();
    _FrmTanque.Release;
+end;
+
+procedure TForm2.BitBtn3Click(Sender: TObject);
+begin
+    _FrmAbastecimento := T_FrmAbastecimento.Create(Self,FAbastecimentoServico,FTanquServico, FBombaServico);
+    _FrmAbastecimento.ShowModal();
+    _FrmAbastecimento.Release;
 end;
 
 procedure TForm2.Button1Click(Sender: TObject);

@@ -1,0 +1,53 @@
+unit UBombaServico;
+
+interface
+
+uses
+  UBombaRepositorio, bomba, System.Generics.Collections;
+
+type BombaDTO=class
+  private
+    FId: Integer;
+    FNomeBomba: string;
+    FIdTanque: Integer;
+  public
+    property Id: Integer read FId write FId;
+    property NomeBomba: string read FNomeBomba write FNomeBomba;
+    property IdTanque: Integer read FIdTanque write FIdTanque;
+end;
+
+ TBombaServico=class
+  private
+     FBombaRepositorio : TBombaRepositorio;
+  public
+     procedure CadastrarNovaBomba(pBomba : BombaDTO);
+     function ObterBombaPorId(pId : integer) : BombaDTO;
+     function ObterTodasAsBombas : TObjectList<BombaDTO>;
+     constructor Create(pBombaRepositorio : TBombaRepositorio);
+end;
+
+implementation
+
+{ TBombaServico }
+
+constructor TBombaServico.Create(pBombaRepositorio: TBombaRepositorio);
+begin
+   FBombaRepositorio := pBombaRepositorio;
+end;
+
+procedure TBombaServico.CadastrarNovaBomba(pBomba : BombaDTO);
+begin
+    FBombaRepositorio.Adicionar(pBomba);
+end;
+
+function TBombaServico.ObterBombaPorId(pId: integer): BombaDTO;
+begin
+    Result :=  FBombaRepositorio.ObterPorId(pId);
+end;
+
+function TBombaServico.ObterTodasAsBombas: TObjectList<BombaDTO>;
+begin
+    Result := FBombaRepositorio.ObterTodas;
+end;
+
+end.

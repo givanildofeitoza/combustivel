@@ -44,6 +44,7 @@ object _FrmTanque: T_FrmTanque
     Align = alCustom
     ColCount = 3
     RowCount = 2
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect]
     TabOrder = 1
     OnSelectCell = gridTanqueSelectCell
   end
@@ -82,6 +83,7 @@ object _FrmTanque: T_FrmTanque
       Top = 40
       Width = 305
       Height = 21
+      CharCase = ecUpperCase
       TabOrder = 0
     end
     object pnlRodapeCadastro: TPanel

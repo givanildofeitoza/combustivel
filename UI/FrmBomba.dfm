@@ -23,7 +23,9 @@ object _FrmBomba: T_FrmBomba
     Align = alCustom
     ColCount = 2
     RowCount = 2
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect]
     TabOrder = 0
+    OnSelectCell = gridBombaSelectCell
   end
   object Panel1: TPanel
     Left = 0
@@ -46,14 +48,14 @@ object _FrmBomba: T_FrmBomba
     ExplicitTop = 80
     ExplicitWidth = 185
   end
-  object Button1: TButton
+  object btnincluir: TButton
     Left = 8
     Top = 264
     Width = 97
     Height = 37
     Caption = 'Incluir'
     TabOrder = 2
-    OnClick = Button1Click
+    OnClick = btnincluirClick
   end
   object pnlCadBomba: TPanel
     Left = 8
@@ -81,6 +83,7 @@ object _FrmBomba: T_FrmBomba
       Top = 40
       Width = 305
       Height = 21
+      CharCase = ecUpperCase
       TabOrder = 0
     end
     object pnlRodapeCadastro: TPanel
@@ -136,5 +139,15 @@ object _FrmBomba: T_FrmBomba
       TabOrder = 4
       OnClick = BitBtn3Click
     end
+  end
+  object btnSelecionar: TBitBtn
+    Left = 261
+    Top = 264
+    Width = 105
+    Height = 37
+    Caption = 'SELECIONAR'
+    TabOrder = 4
+    Visible = False
+    OnClick = btnSelecionarClick
   end
 end

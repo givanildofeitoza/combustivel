@@ -3,9 +3,11 @@ unit UTanqueServico;
 interface
 
 uses
-  UTanqueRepositorio, tanque, System.Generics.Collections;
+  UTanqueRepositorio, tanque, System.Generics.Collections, EnumTipoCombustivel;
 
-type TTanqueServico = class
+type
+
+TTanqueServico = class
   private
     FTanqueRepositorio : TTanqueRepositorio;
 

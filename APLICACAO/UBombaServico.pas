@@ -5,6 +5,7 @@ interface
 uses
   UBombaRepositorio, bomba, System.Generics.Collections;
 
+
 type TBombaServico=class
   private
      FBombaRepositorio : TBombaRepositorio;
