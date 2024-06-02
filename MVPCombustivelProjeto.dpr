@@ -10,7 +10,12 @@ uses
   UBombaRepositorio in 'REPOSITORIO\UBombaRepositorio.pas',
   UTanqueRepositorio in 'REPOSITORIO\UTanqueRepositorio.pas',
   UAbastecimentoRepositorio in 'REPOSITORIO\UAbastecimentoRepositorio.pas',
-  UAbastecimentoSerivo in 'APLICACAO\UAbastecimentoSerivo.pas';
+  UAbastecimentoSerivo in 'APLICACAO\UAbastecimentoSerivo.pas',
+  FrmBomba in 'UI\FrmBomba.pas' {_FrmBomba},
+  FrmTanque in 'UI\FrmTanque.pas' {_FrmTanque},
+  FrmAbastecimento in 'UI\FrmAbastecimento.pas' {_FrmAbastecimento},
+  UTanqueServico in 'APLICACAO\UTanqueServico.pas',
+  UBombaServico in 'APLICACAO\UBombaServico.pas';
 
 {$R *.res}
 

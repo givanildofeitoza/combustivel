@@ -1,0 +1,19 @@
+unit UTanqueServico;
+
+interface
+
+uses
+  UTanqueRepositorio, tanque;
+
+type TTanqueServico = class
+  private
+    FTanqueRepositorio : TTanqueRepositorio;
+
+  public
+    procedure CadastrarNovoTanque(pTanque : TTanque);
+    constructor Create(pTanqueRepositorio : TTanqueRepositorio);
+end;
+
+implementation
+
+end.

@@ -12,6 +12,7 @@ type
     FData: TDate;
     FValor: Double;
     FLitros: Double;
+    FVunitario: Double;
     FImposto: Double;
     FAliquota: Double;
     FIdBomba: Integer;
@@ -20,6 +21,7 @@ type
     property Data: TDate read FData write FData;
     property Valor: Double read FValor write FValor;
     property Litros: Double read FLitros write FLitros;
+    property Vunitario: Double read FVunitario write FVunitario;
     property Imposto: Double read FImposto write FImposto;
     property Aliquota: Double read FAliquota write FAliquota;
     property IdBomba: Integer read FIdBomba write FIdBomba;

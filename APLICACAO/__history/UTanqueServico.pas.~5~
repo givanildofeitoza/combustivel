@@ -1,0 +1,22 @@
+unit UTanqueServico;
+
+interface
+
+uses
+  UTanqueRepositorio, tanque, System.Generics.Collections;
+
+type TTanqueServico = class
+  private
+    FTanqueRepositorio : TTanqueRepositorio;
+
+  public
+    procedure CadastrarNovoTanque(pTanque : TTanque);
+    function ObterTodosOsTanques() : TObjectList<TTanque>;
+    function ObterTanquePorId(pId : integer) : TTanque;
+
+    constructor Create(pTanqueRepositorio : TTanqueRepositorio);
+end;
+
+implementation
+
+end.

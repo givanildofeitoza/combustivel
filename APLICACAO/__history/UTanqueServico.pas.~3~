@@ -1,0 +1,18 @@
+unit UTanqueServico;
+
+interface
+
+uses
+  UTanqueRepositorio;
+
+type TTanqueServico = class
+  private
+    FTanqueRepositorio : TTanqueRepositorio;
+
+  public
+    constructor Create(pTanqueRepositorio : TTanqueRepositorio);
+end;
+
+implementation
+
+end.

@@ -1,0 +1,112 @@
+unit FrmBomba;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Grids,System.Generics.Collections,
+  bomba, UBombaServico, Vcl.StdCtrls, Vcl.Buttons, UTanqueServico;
+
+type
+  T_FrmBomba = class(TForm)
+    gridBomba: TStringGrid;
+    Panel1: TPanel;
+    Button1: TButton;
+    pnlCadBomba: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    TxtNomeBomba: TEdit;
+    pnlRodapeCadastro: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    TxtIdTanque: TEdit;
+    txtNomeTanque: TEdit;
+    BitBtn3: TBitBtn;
+    procedure FormShow(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+     FBombaServico : TBombaServico;
+     FTanquServico : TTanqueServico;
+     procedure AtualizarGrid(pBombas : TObjectList<TBomba>);
+  public
+    { Public declarations }
+    constructor Create(AOwner: TComponent; pBombaServico : TBombaServico; pTanquServico: TTanqueServico); overload;
+  end;
+
+var
+  _FrmBomba: T_FrmBomba;
+
+implementation
+
+uses
+  FrmTanque;
+
+{$R *.dfm}
+
+{ TForm1 }
+
+procedure T_FrmBomba.AtualizarGrid(pBombas: TObjectList<TBomba>);
+var
+   bomba : TBomba;
+begin
+   gridBomba.Cells[0,0] := 'ID';
+   gridBomba.Cells[1,0] := 'NOME';
+   gridBomba.ColWidths[1] := 120;
+   gridBomba.RowCount := 1;
+
+   for bomba in pBombas do
+   begin
+       gridBomba.Cells[0,gridBomba.RowCount] := bomba.Id.ToString();
+       gridBomba.Cells[1,gridBomba.RowCount] := bomba.NomeBomba;
+       gridBomba.RowCount := gridBomba.RowCount + 1;
+   end;
+end;
+procedure T_FrmBomba.BitBtn1Click(Sender: TObject);
+var
+  bomba : TBomba;
+begin
+   try
+      bomba := Tbomba.Create;
+      bomba.NomeBomba := TxtNomeBomba.Text;
+      bomba.IdTanque  := StrToInt(TxtIdTanque.Text)
+   finally
+
+   end;
+end;
+
+procedure T_FrmBomba.BitBtn2Click(Sender: TObject);
+begin
+   pnlCadBomba.Visible := False;
+end;
+
+procedure T_FrmBomba.BitBtn3Click(Sender: TObject);
+begin
+   _FrmTanque := T_FrmTanque.Create(Self,FTanquServico);
+   _FrmTanque.ShowModal();
+   _FrmTanque.Release;
+end;
+
+procedure T_FrmBomba.Button1Click(Sender: TObject);
+begin
+    pnlCadBomba.Align := alClient;
+    pnlCadBomba.Visible := True;
+end;
+
+constructor T_FrmBomba.Create(AOwner: TComponent; pBombaServico: TBombaServico;
+ pTanquServico: TTanqueServico);
+begin
+   inherited Create(AOwner);
+   FBombaServico  := pBombaServico;
+   FTanquServico  := pTanquServico;
+end;
+
+procedure T_FrmBomba.FormShow(Sender: TObject);
+begin
+    AtualizarGrid(FBombaServico.ObterTodasAsBombas);
+end;
+
+end.

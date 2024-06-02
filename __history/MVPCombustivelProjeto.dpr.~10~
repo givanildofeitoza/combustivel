@@ -1,0 +1,30 @@
+program MVPCombustivelProjeto;
+
+uses
+  Vcl.Forms,
+  MVPCombustivel in 'MVPCombustivel.pas' {Form2},
+  bomba in 'DOMINIO\bomba.pas',
+  tanque in 'DOMINIO\tanque.pas',
+  abastecimento in 'DOMINIO\abastecimento.pas',
+  EnumTipoCombustivel in 'DOMINIO\comuns\enuns\EnumTipoCombustivel.pas',
+  UBombaRepositorio in 'REPOSITORIO\UBombaRepositorio.pas',
+  UTanqueRepositorio in 'REPOSITORIO\UTanqueRepositorio.pas',
+  UAbastecimentoRepositorio in 'REPOSITORIO\UAbastecimentoRepositorio.pas',
+  UAbastecimentoSerivo in 'APLICACAO\UAbastecimentoSerivo.pas',
+  FrmBomba in 'UI\FrmBomba.pas' {Form1},
+  FrmTanque in 'UI\FrmTanque.pas' {Form3},
+  FrmAbastecimento in 'UI\FrmAbastecimento.pas' {Form4},
+  UTanqueServico in 'APLICACAO\UTanqueServico.pas',
+  UBombaServico in 'APLICACAO\UBombaServico.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TForm3, Form3);
+  Application.CreateForm(TForm4, Form4);
+  Application.Run;
+end.
