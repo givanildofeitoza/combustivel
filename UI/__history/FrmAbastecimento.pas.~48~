@@ -29,6 +29,8 @@ type
     procedure BitBtn2Enter(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure MascaraDeValor(Sender: TObject; var Key: Char; pTexto : string);
+    procedure txtPrecoUnitarioKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     FAbastecimentoServico : TAbastecimentoServico;
@@ -69,9 +71,23 @@ begin
 end;
 
 procedure T_FrmAbastecimento.BitBtn2Click(Sender: TObject);
+var
+  abastecimentoDTO : TAbastecimentoDTO;
 begin
     if(application.MessageBox('Confimar abastecimento?','Confirmação',MB_YESNO+MB_ICONQUESTION)=ID_NO)then
        exit;
+
+     try  
+        abastecimentoDTO := TAbastecimentoDTO.Create;
+        abastecimentoDTO.Valor    := StrToFloat(TxtTotal.Text);
+        abastecimentoDTO.Vunitario:= StrToFloat(txtPrecoUnitario.Text);
+        abastecimentoDTO.Litros   := StrToFloat(TxtqtdLitrosAbastecer.Text);
+        abastecimentoDTO.Aliquota := 13;
+        abastecimentoDTO.IdBomba  := StrToInt(TxtIdBomba.Text);
+        FAbastecimentoServico.Abastecer(abastecimentoDTO);
+     finally
+        abastecimentoDTO.Free;
+     end;
 end;
 
 procedure T_FrmAbastecimento.BitBtn2Enter(Sender: TObject);
@@ -107,13 +123,24 @@ begin
     end;
 end;
 
-procedure T_FrmAbastecimento.TxtqtdLitrosAbastecerKeyPress(Sender: TObject; var Key: Char);
+procedure T_FrmAbastecimento.MascaraDeValor(Sender: TObject; var Key: Char; pTexto : string);
 begin
-   if not (key in['0'..'9']) and (key <>#13) and (key <> '.') and (key <> #8)then
+     if not (key in['0'..'9']) and (key <>#13) and (key <> '.') and (key <> #8)then
      key := #0;
 
-    if (key = '.') and (pos('.',self.TxtqtdLitrosAbastecer.Text)<>0) then
+    if (key = '.') and (pos('.',pTexto)<>0) then
       key := #0;
+end;
+
+procedure T_FrmAbastecimento.txtPrecoUnitarioKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+    MascaraDeValor(Sender,key,self.txtPrecoUnitario.Text);
+end;
+
+procedure T_FrmAbastecimento.TxtqtdLitrosAbastecerKeyPress(Sender: TObject; var Key: Char);
+begin
+     MascaraDeValor(Sender,key,self.TxtqtdLitrosAbastecer.Text);
 end;
 
 end.

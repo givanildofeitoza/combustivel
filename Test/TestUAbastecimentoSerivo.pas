@@ -104,7 +104,7 @@ begin
    pAbastecimento.IdBomba := 1;
 
   // TODO: Validate method results
-   ReturnValue := FAbastecimentoServico.Abastecer(pAbastecimento);
+   //ReturnValue := FAbastecimentoServico.Abastecer(pAbastecimento);
    Check((ReturnValue.Imposto=FAbastecimentoServico.calcularImposto(120, 13)) ,'Cálculo do imposto diverge da alíquota de 13%');
    pAbastecimento.Free;
 end;

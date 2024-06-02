@@ -39,7 +39,7 @@ TAbastecimentoServico=class
         FTanqueRepositorio : TTanqueRepositorio;
         FAbastecimentoRepositorio : TAbastecimentoRepositorio;
      public
-        function Abastecer(pAbastecimento : TAbastecimentoDTO): TAbastecimentoDTO;
+        procedure Abastecer(pAbastecimento : TAbastecimentoDTO);
         function ObterAbastecimentoCompleto(Id : integer) : TAbastecimentoDTO;
         function ObterAbastecimentoCompletoPorData(pDataInicio,pDataFim : TDate) : TObjectList<TAbastecimentoDTO>;
         function calcularImposto(pBaseDeCalculo,pAliquota : Double):Double;
@@ -47,7 +47,6 @@ TAbastecimentoServico=class
         pTanqueRepositorio : TTanqueRepositorio;
         pAbastecimentoRepositorio : TAbastecimentoRepositorio);
 end;
-
 
 implementation
 
@@ -89,12 +88,37 @@ end;
 
 function TAbastecimentoServico.ObterAbastecimentoCompletoPorData(pDataInicio,
   pDataFim: TDate): TObjectList<TAbastecimentoDTO>;
+  var
+    abastecimentoListaDTO : TObjectList<TAbastecimentoDTO>;
+    abastecimentoLista : TObjectList<TAbastecimento>;
+    abastecimento :  TAbastecimento;
+    abastecimentoDTO :  TAbastecimentoDTO;
 begin
+    abastecimentoLista := FAbastecimentoRepositorio.ObeterPorData(pDataInicio,pDataFim);
+    abastecimentoListaDTO := TObjectList<TAbastecimentoDTO>.Create;
+    abastecimentoListaDTO.Clear;
 
+    for abastecimento in abastecimentoLista do
+    begin
+       abastecimentoDTO    :=  TAbastecimentoDTO.Create;
+       abastecimentoDTO.Id        := abastecimento.Id;
+       abastecimentoDTO.Data      := abastecimento.Data;
+       abastecimentoDTO.Valor     := abastecimento.Valor;
+       abastecimentoDTO.Vunitario := abastecimento.Vunitario;
+       abastecimentoDTO.Litros    := abastecimento.Litros;
+       abastecimentoDTO.Aliquota  := abastecimento.Aliquota;
+       abastecimentoDTO.Imposto   := abastecimento.Imposto;
+       abastecimentoDTO.IdBomba   := abastecimento.IdBomba;
+       abastecimentoDTO.Bomba     := FBombaRepositorio.ObterPorId(abastecimento.IdBomba);
+       abastecimentoDTO.Tanque    := FTanqueRepositorio.ObterPorId(abastecimentoDTO.Bomba.IdTanque);
+       abastecimentoListaDTO.Add(abastecimentoDTO);
+    end;
+
+    Result := abastecimentoListaDTO;
 end;
 
-function TAbastecimentoServico.Abastecer(
-  pAbastecimento: TAbastecimentoDTO): TAbastecimentoDTO;
+procedure TAbastecimentoServico.Abastecer(
+  pAbastecimento: TAbastecimentoDTO);
  var
    abastecimento : TAbastecimento;
 begin
@@ -103,17 +127,15 @@ begin
      abastecimento.IdBomba  :=  pAbastecimento.IdBomba;
      abastecimento.Litros   :=  pAbastecimento.Litros;
      abastecimento.Vunitario:=  pAbastecimento.FVunitario;
-     abastecimento.Aliquota:=   13.00;
-     abastecimento.Imposto :=  calcularImposto(pAbastecimento.Valor,abastecimento.Aliquota);
-     abastecimento.Valor   :=  pAbastecimento.Valor;
+     abastecimento.Aliquota :=  pAbastecimento.Aliquota;
+     abastecimento.Imposto  :=  calcularImposto(pAbastecimento.Valor,abastecimento.Aliquota);
+     abastecimento.Valor    :=  pAbastecimento.Valor;
      abastecimento.Validar;
      try
         FAbastecimentoRepositorio.GerarAbastecimento(abastecimento);
      finally
         abastecimento.Free;
      end;
-
-     Result := pAbastecimento;
 end;
 
 function TAbastecimentoServico.calcularImposto(pBaseDeCalculo,

@@ -13,7 +13,9 @@ TAbastecimentoDTO = class
     FId : Integer;
     FData: TDate;
     FValor: Double;
+    FVunitario: Double;
     FLitros: Double;
+    FAliquota: Double;
     FImposto: Double;
     FIdBomba: Integer;
     FBomba : TBomba;
@@ -22,8 +24,10 @@ TAbastecimentoDTO = class
     property Id: integer read FId write FId;
     property Data: TDate read FData write FData;
     property Valor: Double read FValor write FValor;
+    property Vunitario: Double read FVunitario write FVunitario;
     property Litros: Double read FLitros write FLitros;
     property Imposto: Double read FImposto write FImposto;
+    property Aliquota: Double read FAliquota write FAliquota;
     property IdBomba: Integer read FIdBomba write FIdBomba;
     property Bomba: TBomba read FBomba write FBomba;
     property Tanque: TTanque read FTanque write FTanque;
@@ -48,7 +52,7 @@ end;
 implementation
 
 uses
-  abastecimento;
+  abastecimento, System.SysUtils;
 
 { TAbastecimentoServico }
 
@@ -94,13 +98,15 @@ function TAbastecimentoServico.Abastecer(
  var
    abastecimento : TAbastecimento;
 begin
-     abastecimento         :=  TAbastecimento.Create;
-     abastecimento.Data    :=  pAbastecimento.Data;
-     abastecimento.IdBomba :=  pAbastecimento.IdBomba;
-     abastecimento.Litros  :=  pAbastecimento.Litros;
-     abastecimento.Aliquota:=  13.00;
+     abastecimento          :=  TAbastecimento.Create;
+     abastecimento.Data     :=  now;
+     abastecimento.IdBomba  :=  pAbastecimento.IdBomba;
+     abastecimento.Litros   :=  pAbastecimento.Litros;
+     abastecimento.Vunitario:=  pAbastecimento.FVunitario;
+     abastecimento.Aliquota:=   pAbastecimento.Aliquota;
      abastecimento.Imposto :=  calcularImposto(pAbastecimento.Valor,abastecimento.Aliquota);
      abastecimento.Valor   :=  pAbastecimento.Valor;
+     abastecimento.Validar;
      try
         FAbastecimentoRepositorio.GerarAbastecimento(abastecimento);
      finally

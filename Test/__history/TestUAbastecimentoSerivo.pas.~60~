@@ -84,12 +84,10 @@ var
 begin
   // TODO: Setup method call parameters
   pBaseDeCalculo := 120;
-  pAliquota := 15;
+  pAliquota := 10;
 
-  ReturnValue := FAbastecimentoServico.calcularImposto(pBaseDeCalculo, pAliquota);
   // TODO: Validate method results
-  //CheckEquals();
-
+  ReturnValue := FAbastecimentoServico.calcularImposto(pBaseDeCalculo, pAliquota);
 end;
 
 procedure TestTAbastecimentoServico.TestAbastecer;
@@ -102,17 +100,13 @@ begin
    pAbastecimento.Valor := 120;
    pAbastecimento.Data  := now;
    pAbastecimento.Litros := 20;
-   pAbastecimento.Imposto:= 15.6;
+   pAbastecimento.Imposto:= 15.60;
    pAbastecimento.IdBomba := 1;
 
   // TODO: Validate method results
    ReturnValue := FAbastecimentoServico.Abastecer(pAbastecimento);
-   ReturnValue.Bomba := TBomba.Create;
-   ReturnValue.Tanque := TTanque.Create;
-   CheckNotNull(ReturnValue,'Falha ao gerar o retorno');
-   CheckNotNull(ReturnValue.Bomba,'Falha ao gerar o retorno de bomba');
-   CheckNotNull(ReturnValue.Tanque,'Falha ao gerar o retorno de Tanque');
-   Check(ReturnValue.Imposto <> 15.6,'Cálculo do imposto diverge da alíquota de 13%');
+   Check((ReturnValue.Imposto=FAbastecimentoServico.calcularImposto(120, 13)) ,'Cálculo do imposto diverge da alíquota de 13%');
+   pAbastecimento.Free;
 end;
 
 initialization

@@ -74,6 +74,9 @@ procedure T_FrmAbastecimento.BitBtn2Click(Sender: TObject);
 var
   abastecimentoDTO : TAbastecimentoDTO;
 begin
+    if TxtIdBomba.Text = string.Empty then
+       exit;
+
     if(application.MessageBox('Confimar abastecimento?','Confirmação',MB_YESNO+MB_ICONQUESTION)=ID_NO)then
        exit;
 
