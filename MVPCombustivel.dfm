@@ -3,7 +3,7 @@ object Form2: TForm2
   Top = 0
   Caption = 'SISTEMA DE CONTROLE DE ABASTECIMENTOS'
   ClientHeight = 121
-  ClientWidth = 811
+  ClientWidth = 777
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

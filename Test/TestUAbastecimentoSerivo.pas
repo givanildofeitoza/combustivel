@@ -102,10 +102,11 @@ begin
    pAbastecimento.Litros := 20;
    pAbastecimento.Imposto:= 15.60;
    pAbastecimento.IdBomba := 1;
+   pAbastecimento.Vunitario := 2.8;
 
-  // TODO: Validate method results
-   //ReturnValue := FAbastecimentoServico.Abastecer(pAbastecimento);
-   Check((ReturnValue.Imposto=FAbastecimentoServico.calcularImposto(120, 13)) ,'Cálculo do imposto diverge da alíquota de 13%');
+   // TODO: Validate method results
+   FAbastecimentoServico.Abastecer(pAbastecimento);
+   Check(( FormatCurr('###,##0.00',ReturnValue.Imposto)=FormatCurr('###,##0.00',FAbastecimentoServico.calcularImposto(120, 13))) ,'Cálculo do imposto diverge da alíquota de 13%');
    pAbastecimento.Free;
 end;
 
