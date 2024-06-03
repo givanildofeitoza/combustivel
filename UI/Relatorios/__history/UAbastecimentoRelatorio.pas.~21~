@@ -1,0 +1,41 @@
+unit UAbastecimentoRelatorio;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport, Data.FMTBcd, Data.DB,
+  Data.SqlExpr, Datasnap.Provider, Datasnap.DBClient;
+
+type
+  T_FrmRelatorio = class(TForm)
+    RLReport1: TRLReport;
+    RLBand1: TRLBand;
+    RLLabel1: TRLLabel;
+    RLBand2: TRLBand;
+    SQLQuery1: TSQLQuery;
+    DataSource1: TDataSource;
+    ClientDataSet1: TClientDataSet;
+    DataSetProvider1: TDataSetProvider;
+    ClientDataSet1ID: TLargeintField;
+    RLDBText1: TRLDBText;
+    SQLQuery1ID: TLargeintField;
+    SQLDataSet1: TSQLDataSet;
+    RLDBText2: TRLDBText;
+    RLDBText3: TRLDBText;
+    RLDBText4: TRLDBText;
+    ClientDataSet1DATA: TWideMemoField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  _FrmRelatorio: T_FrmRelatorio;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -90,6 +90,7 @@ begin
         FAbastecimentoServico.Abastecer(abastecimentoDTO);
      finally
         abastecimentoDTO.Free;
+        ModalResult := -1;
      end;
 end;
 

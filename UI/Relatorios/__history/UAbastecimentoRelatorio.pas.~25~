@@ -1,0 +1,61 @@
+unit UAbastecimentoRelatorio;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport, Data.FMTBcd, Data.DB,
+  Data.SqlExpr, Datasnap.Provider, Datasnap.DBClient;
+
+type
+  T_FrmRelatorio = class(TForm)
+    RLReport1: TRLReport;
+    RLBand1: TRLBand;
+    RLLabel1: TRLLabel;
+    RLBand2: TRLBand;
+    SQLQuery1: TSQLQuery;
+    DataSource1: TDataSource;
+    ClientDataSet1: TClientDataSet;
+    DataSetProvider1: TDataSetProvider;
+    ClientDataSet1ID: TLargeintField;
+    RLDBText1: TRLDBText;
+    SQLQuery1ID: TLargeintField;
+    SQLDataSet1: TSQLDataSet;
+    RLDBText2: TRLDBText;
+    RLDBText3: TRLDBText;
+    RLDBText4: TRLDBText;
+    ClientDataSet1DATA: TWideMemoField;
+    ClientDataSet1VALOR: TFloatField;
+    ClientDataSet1IMPOSTO: TFloatField;
+    ClientDataSet1LITROS: TFloatField;
+    RLDBText5: TRLDBText;
+    ClientDataSet1NOMEBOMBA: TWideMemoField;
+    ClientDataSet1COMBUSTIVEL: TWideMemoField;
+    RLDBText6: TRLDBText;
+    RLBand3: TRLBand;
+    RLLabel2: TRLLabel;
+    RLLabel3: TRLLabel;
+    RLLabel4: TRLLabel;
+    RLLabel5: TRLLabel;
+    RLDBText7: TRLDBText;
+    RLLabel6: TRLLabel;
+    RLLabel7: TRLLabel;
+    RLLabel8: TRLLabel;
+    RLLabel9: TRLLabel;
+    labelData1: TRLLabel;
+    LabelData2: TRLLabel;
+    RLLabel12: TRLLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  _FrmRelatorio: T_FrmRelatorio;
+
+implementation
+
+{$R *.dfm}
+
+end.

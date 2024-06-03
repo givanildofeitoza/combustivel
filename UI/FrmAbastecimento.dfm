@@ -85,9 +85,6 @@ object _FrmAbastecimento: T_FrmAbastecimento
     ParentBackground = False
     ParentFont = False
     TabOrder = 4
-    ExplicitLeft = 64
-    ExplicitTop = 80
-    ExplicitWidth = 185
   end
   object TxtIdBomba: TEdit
     Left = 24
@@ -177,8 +174,7 @@ object _FrmAbastecimento: T_FrmAbastecimento
       ParentFont = False
       TabOrder = 0
       Text = '0.00'
-      ExplicitLeft = 544
-      ExplicitHeight = 60
+      ExplicitHeight = 33
     end
   end
   object BitBtn2: TBitBtn

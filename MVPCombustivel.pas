@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.FMTBcd, Data.DB, Data.SqlExpr,
   Data.DbxSqlite, Vcl.StdCtrls, Vcl.Buttons, UBombaRepositorio,
   UTanqueRepositorio, UAbastecimentoRepositorio, UBombaServico, UTanqueServico,
-  UAbastecimentoSerivo;
+  UAbastecimentoSerivo, Datasnap.DBClient, Datasnap.Provider;
 
 type
   TForm2 = class(TForm)
@@ -40,7 +40,7 @@ var
 implementation
 
 uses
-  bomba, FrmTanque, FrmBomba, FrmAbastecimento;
+  bomba, FrmTanque, FrmBomba, FrmAbastecimento, UAbastecimentoRelatorio;
 
 {$R *.dfm}
 
@@ -66,8 +66,46 @@ begin
 end;
 
 procedure TForm2.BitBtn4Click(Sender: TObject);
+var
+  qtdLitrosTotal,somaTotal,totalDisel,totalGasolina : double;
 begin
-   FAbastecimentoServico.ObterAbastecimentoCompletoPorData(NOW,NOW);
+   _FrmRelatorio := T_FrmRelatorio.Create(Self);
+   Application.CreateForm(T_FrmRelatorio, _FrmRelatorio);
+
+   _FrmRelatorio.SQLDataSet1.SQLConnection := ConexaoSQLITE;
+   _FrmRelatorio.SQLQuery1.SQL.Clear;
+   _FrmRelatorio.SQLDataSet1.CommandText:=' SELECT A.ID,A.DATA,A.VALOR,A.IMPOSTO,A.LITROS,'
+        +' B.NOMEBOMBA,T.COMBUSTIVEL'
+        +' FROM ABASTECIMENTO AS A, BOMBA AS B, TANQUE AS T '
+        +' WHERE B.ID = A.IDBOMBA AND B.IDTANQUE = T.ID '
+        +' AND DATA BETWEEN "2024-06-01" AND "2024-06-30" ORDER BY A.ID,A.IDBOMBA';
+   _FrmRelatorio.SQLDataSet1.Open;
+   _FrmRelatorio.ClientDataSet1.OPEN;
+   _FrmRelatorio.ClientDataSet1.Refresh;
+   _FrmRelatorio.labelData1.Caption :='01/06/2024';
+   _FrmRelatorio.labelData2.Caption :='30/06/2024';
+
+   qtdLitrosTotal:= 0;
+   somaTotal     := 0;
+   totalGasolina := 0;
+   totalDisel    := 0;
+   _FrmRelatorio.ClientDataSet1.First;
+   while not _FrmRelatorio.ClientDataSet1.Eof do
+   begin
+       qtdLitrosTotal := qtdLitrosTotal + _FrmRelatorio.ClientDataSet1LITROS.AsFloat;
+       somaTotal:= somaTotal +  _FrmRelatorio.ClientDataSet1VALOR.AsFloat;
+       if _FrmRelatorio.ClientDataSet1COMBUSTIVEL.AsString = 'GASOLINA' then
+         totalGasolina := totalGasolina + _FrmRelatorio.ClientDataSet1LITROS.AsFloat
+       else
+         totalDisel := totalDisel + _FrmRelatorio.ClientDataSet1LITROS.AsFloat;
+
+      _FrmRelatorio.ClientDataSet1.Next;
+   end;
+   _FrmRelatorio.lblGas.Caption :=FormatFloat('###,##0.00',totalGasolina);
+   _FrmRelatorio.lblDisel.Caption :=FormatFloat('###,##0.00',totalDisel);
+   _FrmRelatorio.lblQtdTotal.Caption :=FormatFloat('###,##0.00',qtdLitrosTotal);
+   _FrmRelatorio.LblSomaToal.Caption :=FormatFloat('###,##0.00',somaTotal);
+   _FrmRelatorio.RLReport1.Preview();
 end;
 
 procedure TForm2.FormShow(Sender: TObject);

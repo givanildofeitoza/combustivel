@@ -15,7 +15,8 @@ uses
   FrmTanque in 'UI\FrmTanque.pas' {_FrmTanque},
   FrmAbastecimento in 'UI\FrmAbastecimento.pas' {_FrmAbastecimento},
   UTanqueServico in 'APLICACAO\UTanqueServico.pas',
-  UBombaServico in 'APLICACAO\UBombaServico.pas';
+  UBombaServico in 'APLICACAO\UBombaServico.pas',
+  UAbastecimentoRelatorio in 'UI\Relatorios\UAbastecimentoRelatorio.pas' {_FrmRelatorio};
 
 {$R *.res}
 
@@ -23,5 +24,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(T_FrmRelatorio, _FrmRelatorio);
   Application.Run;
 end.
