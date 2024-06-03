@@ -51,7 +51,7 @@ begin
     FSQLQuery.SQL.Add('SELECT * FROM BOMBA WHERE ID='+quotedstr(pId.ToString()));
     FSQLQuery.Open();
 
-    bomba    := bomba.Create;
+    bomba    := Tbomba.Create;
     bomba.Id := FSQLQuery.FieldByName('ID').AsInteger;
     bomba.NomeBomba := FSQLQuery.FieldByName('NOMEBOMBA').AsString;
     bomba.IdTanque  := FSQLQuery.FieldByName('IDTANQUE').AsInteger;

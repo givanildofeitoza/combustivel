@@ -3,7 +3,7 @@ object Form2: TForm2
   Top = 0
   Caption = 'Form2'
   ClientHeight = 112
-  ClientWidth = 635
+  ClientWidth = 811
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,22 +14,13 @@ object Form2: TForm2
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Button1: TButton
-    Left = 464
-    Top = 120
-    Width = 75
-    Height = 25
-    Caption = 'Button1'
-    TabOrder = 0
-    OnClick = Button1Click
-  end
   object BitBtn1: TBitBtn
     Left = 144
     Top = 48
     Width = 105
     Height = 41
     Caption = 'BOMBAS'
-    TabOrder = 1
+    TabOrder = 0
     OnClick = BitBtn1Click
   end
   object BitBtn2: TBitBtn
@@ -38,7 +29,7 @@ object Form2: TForm2
     Width = 105
     Height = 41
     Caption = 'TANQUES'
-    TabOrder = 2
+    TabOrder = 1
     OnClick = BitBtn2Click
   end
   object BitBtn3: TBitBtn
@@ -47,15 +38,24 @@ object Form2: TForm2
     Width = 116
     Height = 41
     Caption = 'ABASTECIMENTO'
-    TabOrder = 3
+    TabOrder = 2
     OnClick = BitBtn3Click
+  end
+  object BitBtn4: TBitBtn
+    Left = 440
+    Top = 48
+    Width = 145
+    Height = 41
+    Caption = 'IMPRESS'#195'O'
+    TabOrder = 3
+    OnClick = BitBtn4Click
   end
   object qrPadrao: TSQLQuery
     MaxBlobSize = -1
     Params = <>
     SQLConnection = ConexaoSQLITE
-    Left = 552
-    Top = 56
+    Left = 688
+    Top = 64
   end
   object ConexaoSQLITE: TSQLConnection
     ConnectionName = 'SQLITECONNECTION'
@@ -64,7 +64,7 @@ object Form2: TForm2
     Params.Strings = (
       'DriverName=Sqlite'
       'Database=combustivel.db')
-    Left = 472
+    Left = 648
     Top = 56
   end
 end

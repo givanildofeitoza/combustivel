@@ -13,15 +13,15 @@ type
   TForm2 = class(TForm)
     qrPadrao: TSQLQuery;
     ConexaoSQLITE: TSQLConnection;
-    Button1: TButton;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
-    procedure Button1Click(Sender: TObject);
+    BitBtn4: TBitBtn;
     procedure BitBtn2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
   private
     { Private declarations }
     FBombaRepositorio : TbombaRepositorio;
@@ -65,19 +65,9 @@ begin
     _FrmAbastecimento.Release;
 end;
 
-procedure TForm2.Button1Click(Sender: TObject);
-var
-  bomba : TBomba;
-  bombaRepositorio : TbombaRepositorio;
+procedure TForm2.BitBtn4Click(Sender: TObject);
 begin
-   bombaRepositorio := TbombaRepositorio.Create(qrPadrao);
-   bomba := TBomba.Create;
-   bomba.NomeBomba := 'BOMBA 01';
-   bomba.IdTanque := 2;
-
-  // bombaRepositorio.Adicionar(bomba);
-   bombaRepositorio.Remover(1);
-   bombaRepositorio.Remover(2);
+   FAbastecimentoServico.ObterAbastecimentoCompletoPorData(NOW,NOW);
 end;
 
 procedure TForm2.FormShow(Sender: TObject);

@@ -3,11 +3,11 @@
 	<Transactions>
     <Transaction>2024/05/31 18:34:03.000.355,=C:\givanildo\Projetos\COMBUSTIVEL\Test\TestUAbastecimentoSerivo.pas</Transaction>
     <Transaction>2024/05/31 18:34:03.000.602,=C:\givanildo\Projetos\COMBUSTIVEL\APLICACAO\UAbastecimentoSerivo.pas</Transaction>
-    <Transaction>2024/05/31 21:24:49.156,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\REPOSITORIO\UAbastecimentoRepositorio.pas</Transaction>
-    <Transaction>2024/05/31 21:27:53.871,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\REPOSITORIO\UBombaRepositorio.pas</Transaction>
-    <Transaction>2024/05/31 21:27:53.876,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\REPOSITORIO\UTanqueRepositorio.pas</Transaction>
-    <Transaction>2024/05/31 22:27:25.146,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\DOMINIO\abastecimento.pas</Transaction>
-    <Transaction>2024/05/31 22:27:25.160,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\DOMINIO\bomba.pas</Transaction>
-    <Transaction>2024/05/31 22:27:25.175,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\DOMINIO\tanque.pas</Transaction>
+    <Transaction>2024/05/31 21:24:49.000.156,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\REPOSITORIO\UAbastecimentoRepositorio.pas</Transaction>
+    <Transaction>2024/05/31 21:27:53.000.876,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\REPOSITORIO\UTanqueRepositorio.pas</Transaction>
+    <Transaction>2024/05/31 21:27:53.000.871,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\REPOSITORIO\UBombaRepositorio.pas</Transaction>
+    <Transaction>2024/05/31 22:27:25.000.175,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\DOMINIO\tanque.pas</Transaction>
+    <Transaction>2024/05/31 22:27:25.000.160,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\DOMINIO\bomba.pas</Transaction>
+    <Transaction>2024/05/31 22:27:25.000.146,=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\DOMINIO\abastecimento.pas</Transaction>
   </Transactions>
 </BorlandProject>

@@ -13,6 +13,7 @@ type TAbastecimentoRepositorio = class
     function ObeterPorData(pDataInicial,pDataFinal : TDate) : TObjectList<TAbastecimento>;
     function ObeterPorBomda(pDataInicial,pDataFinal : TDate) : TObjectList<TAbastecimento>;
     procedure GerarAbastecimento(pAbastecimento : TAbastecimento); virtual;
+    function FormatarDataBanco(pData:String):TDate;
 
     Constructor Create(pQuery : TSQLQuery);
 end;
@@ -27,6 +28,19 @@ uses
 constructor TAbastecimentoRepositorio.Create(pQuery : TSQLQuery);
 begin
     FSQLQuery := pQuery;
+end;
+
+function TAbastecimentoRepositorio.FormatarDataBanco(pData: String): TDate;
+var
+  DataFormatada: TDate;
+  fmt: TFormatSettings;
+begin
+  fmt := TFormatSettings.Create;
+  fmt.ShortDateFormat := 'yyyy-mm-dd';
+  fmt.DateSeparator := '-';
+  DataFormatada := StrToDate(pData, fmt);
+
+     Result :=  StrToDate(formatdateTime('dd/mm/yyyy',DataFormatada));
 end;
 
 procedure TAbastecimentoRepositorio.GerarAbastecimento(pAbastecimento: TAbastecimento);
@@ -66,7 +80,7 @@ begin
         begin
           abastecimento    := TAbastecimento.Create;
           abastecimento.Id := FSQLQuery.FieldByName('ID').AsInteger;
-          abastecimento.Data   := FSQLQuery.FieldByName('DATA').AsDateTime;
+          abastecimento.Data   := FormatarDataBanco(FSQLQuery.FieldByName('DATA').AsString);
           abastecimento.Litros := FSQLQuery.FieldByName('LITROS').AsFloat;
           abastecimento.Aliquota  := FSQLQuery.FieldByName('ALIQUOTA').AsFloat;
           abastecimento.Vunitario := FSQLQuery.FieldByName('VUNITARIO').AsFloat;
@@ -91,7 +105,7 @@ begin
     abastecimentoLista := TObjectList<TAbastecimento>.Create();
     FSQLQuery.SQL.Clear;
     FSQLQuery.SQL.Add('SELECT * FROM ABASTECIMENTO WHERE DATA BETWEEN "'+FormatDateTime('yyyy-mm-dd',pDataInicial)+'" AND "'
-       +FormatDateTime('yyyy-mm-dd',pDataFinal)+'"');
+       +FormatDateTime('yyyy-mm-dd',pDataFinal)+'" ORDER BY IDBOMBA,ID');
     FSQLQuery.Open();
 
     if not (FSQLQuery.FieldByName('IDBOMBA').AsInteger = 0) then
@@ -101,7 +115,7 @@ begin
         begin
           abastecimento    := TAbastecimento.Create;
           abastecimento.Id := FSQLQuery.FieldByName('ID').AsInteger;
-          abastecimento.Data   := FSQLQuery.FieldByName('DATA').AsDateTime;
+          abastecimento.Data   := FormatarDataBanco(FSQLQuery.FieldByName('DATA').Asstring);
           abastecimento.Valor  := FSQLQuery.FieldByName('VALOR').AsFloat;
           abastecimento.Litros := FSQLQuery.FieldByName('LITROS').AsFloat;
           abastecimento.Imposto   := FSQLQuery.FieldByName('IMPOSTO').AsFloat;
@@ -127,7 +141,7 @@ begin
 
     abastecimento    := TAbastecimento.Create;
     abastecimento.Id := FSQLQuery.FieldByName('ID').AsInteger;
-    abastecimento.Data   := FSQLQuery.FieldByName('DATA').AsDateTime;
+    abastecimento.Data   := FormatarDataBanco(FSQLQuery.FieldByName('DATA').AsString);
     abastecimento.Valor  := FSQLQuery.FieldByName('VALOR').AsFloat;
     abastecimento.Vunitario := FSQLQuery.FieldByName('VUNITARIO').AsFloat;
     abastecimento.Litros    := FSQLQuery.FieldByName('LITROS').AsFloat;
