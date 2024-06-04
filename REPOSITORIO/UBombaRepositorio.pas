@@ -3,30 +3,30 @@ unit UBombaRepositorio;
 interface
 
 uses
-  bomba, System.Generics.Collections, Data.SqlExpr;
+  bomba, System.Generics.Collections, Data.SqlExpr, UISQLquery;
 
 type TBombaRepositorio = class
   private
-    FSQLQuery : TSQLQuery;
+   FSQLQuery : ISQLquery;
   public
-    procedure Adicionar(pBomba : TBomba);
-    procedure Remover(pId : integer);
-    function ObterPorId(pId : integer) : TBomba; virtual;
-    function ObterTodas() : TObjectList<TBomba>;
+   procedure Adicionar(pBomba : TBomba);
+   procedure Remover(pId : integer);
+   function ObterPorId(pId : integer) : TBomba; virtual;
+   function ObterTodas() : TObjectList<TBomba>;
 
-    constructor Create(pSQLQuery : TSQLQuery);
+   constructor Create(pSQLQuery : ISQLquery);
 end;
 
 implementation
 
 uses
-  System.SysUtils;
+   System.SysUtils;
 
 { TBombaRepositorio }
 
-constructor TBombaRepositorio.Create(pSQLQuery: TSQLQuery);
+constructor TBombaRepositorio.Create(pSQLQuery: ISQLquery);
 begin
-  FSQLQuery := pSQLQuery;
+   FSQLQuery := pSQLQuery;
 end;
 
 procedure TBombaRepositorio.Adicionar(pBomba: TBomba);
@@ -47,16 +47,16 @@ function TBombaRepositorio.ObterPorId(pId: integer): TBomba;
 var
   bomba : TBomba;
 begin
-    FSQLQuery.SQL.Clear;
-    FSQLQuery.SQL.Add('SELECT * FROM BOMBA WHERE ID='+quotedstr(pId.ToString()));
-    FSQLQuery.Open();
+   FSQLQuery.SQL.Clear;
+   FSQLQuery.SQL.Add('SELECT * FROM BOMBA WHERE ID='+quotedstr(pId.ToString()));
+   FSQLQuery.Open();
 
-    bomba    := Tbomba.Create;
-    bomba.Id := FSQLQuery.FieldByName('ID').AsInteger;
-    bomba.NomeBomba := FSQLQuery.FieldByName('NOMEBOMBA').AsString;
-    bomba.IdTanque  := FSQLQuery.FieldByName('IDTANQUE').AsInteger;
+   bomba    := Tbomba.Create;
+   bomba.Id := FSQLQuery.FieldByName('ID').AsInteger;
+   bomba.NomeBomba := FSQLQuery.FieldByName('NOMEBOMBA').AsString;
+   bomba.IdTanque  := FSQLQuery.FieldByName('IDTANQUE').AsInteger;
 
-    Result := bomba;
+   Result := bomba;
 end;
 
 function TBombaRepositorio.ObterTodas: TObjectList<TBomba>;
@@ -64,13 +64,13 @@ var
   bomba : TBomba;
   bombaLista :  TObjectList<TBomba>;
 begin
-    bombaLista := TObjectList<TBomba>.Create();
-    FSQLQuery.SQL.Clear;
-    FSQLQuery.SQL.Add('SELECT * FROM BOMBA');
-    FSQLQuery.Open();
+   bombaLista := TObjectList<TBomba>.Create();
+   FSQLQuery.SQL.Clear;
+   FSQLQuery.SQL.Add('SELECT * FROM BOMBA');
+   FSQLQuery.Open();
 
-    if FSQLQuery.FieldByName('NOMEBOMBA').AsString <> string.Empty then
-    begin
+   if FSQLQuery.FieldByName('NOMEBOMBA').AsString <> string.Empty then
+   begin
         FSQLQuery.First;
         while not FSQLQuery.Eof do
         begin
@@ -82,23 +82,23 @@ begin
 
           FSQLQuery.Next;
         end;
-    end;
+   end;
 
-    Result := bombaLista;
+   Result := bombaLista;
 end;
 
 procedure TBombaRepositorio.Remover(pId: integer);
 begin
-    if pId = 0 then
+   if pId = 0 then
       raise Exception.Create('Id Não ode ser zero!');
 
-    try
+   try
        FSQLQuery.SQL.Clear;
        FSQLQuery.SQL.Add('DELETE FROM BOMBA WHERE ID='+quotedstr(pId.ToString()));
        FSQLQuery.ExecSQL();
-    except
+   except
         raise Exception.Create('Não foi possível excluir bomba!');
-    end;
+   end;
 end;
 
 end.

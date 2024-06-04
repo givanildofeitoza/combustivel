@@ -1,0 +1,15 @@
+unit UDACquery;
+
+interface
+
+uses
+  UISQLquery;
+
+type
+UDACquery = class(TInterfacedObject,ISQLquery)
+
+end;
+
+implementation
+
+end.

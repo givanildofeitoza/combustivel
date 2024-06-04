@@ -1,0 +1,14 @@
+unit UISQLquery;
+
+interface
+
+type
+ISQLquery=interface
+   procedure Execute();
+   function Open(pValor : string):TObject;
+
+end;
+
+implementation
+
+end.

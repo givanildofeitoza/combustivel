@@ -1,0 +1,12 @@
+unit UISQLquery;
+
+interface
+
+type
+ISQLquery=class
+
+end;
+
+implementation
+
+end.

@@ -7,7 +7,12 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.FMTBcd, Data.DB, Data.SqlExpr,
   Data.DbxSqlite, Vcl.StdCtrls, Vcl.Buttons, UBombaRepositorio,
   UTanqueRepositorio, UAbastecimentoRepositorio, UBombaServico, UTanqueServico,
-  UAbastecimentoSerivo, Datasnap.DBClient, Datasnap.Provider;
+  UAbastecimentoSerivo, Datasnap.DBClient, Datasnap.Provider, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
+  FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Stan.ExprFuncs,
+  FireDAC.Phys.SQLite;
 
 type
   TForm2 = class(TForm)
@@ -17,6 +22,9 @@ type
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
     BitBtn4: TBitBtn;
+    ConexaoSQLITEDAC: TFDConnection;
+    qrPadraoDAC: TFDQuery;
+    fdphysqltdrvrlnk: TFDPhysSQLiteDriverLink;
     procedure BitBtn2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -40,7 +48,8 @@ var
 implementation
 
 uses
-  bomba, FrmTanque, FrmBomba, FrmAbastecimento, UAbastecimentoRelatorio;
+  bomba, FrmTanque, FrmBomba, FrmAbastecimento, UAbastecimentoRelatorio,
+  UDBXquery, UDACquery;
 
 {$R *.dfm}
 
@@ -109,11 +118,26 @@ begin
 end;
 
 procedure TForm2.FormShow(Sender: TObject);
+var
+  qrPadrao2 : TDBXquery;
+  qrPadraoDac2 : TDACquery;
+  Conexao : string;
 begin
-    FBombaRepositorio := TbombaRepositorio.Create(qrPadrao);
-    FTanquRepositorio := TTanqueRepositorio.Create(qrPadrao);
-    FAbastecimentoRepositorio := TAbastecimentoRepositorio.Create(qrPadrao);
-
+    Conexao := 'DBX';
+    if Conexao = 'FIREDAC' then
+    begin
+      qrPadraoDac2 := TDACquery.Create(qrPadraoDAC);
+      FBombaRepositorio := TbombaRepositorio.Create(qrPadraoDac2);
+      FTanquRepositorio := TTanqueRepositorio.Create(qrPadraoDac2);
+      FAbastecimentoRepositorio := TAbastecimentoRepositorio.Create(qrPadraoDac2);
+    end
+    else
+    begin
+      qrPadrao2    := TDBXquery.Create(qrPadrao);
+      FBombaRepositorio := TbombaRepositorio.Create(qrPadrao2);
+      FTanquRepositorio := TTanqueRepositorio.Create(qrPadrao2);
+      FAbastecimentoRepositorio := TAbastecimentoRepositorio.Create(qrPadrao2);
+    end;
     FBombaServico := TbombaServico.Create(FBombaRepositorio);
     FTanquServico := TTanqueServico.Create(FTanquRepositorio);
     FAbastecimentoServico := TAbastecimentoServico.Create(FBombaRepositorio,

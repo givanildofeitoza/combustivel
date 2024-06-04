@@ -16,7 +16,10 @@ uses
   FrmAbastecimento in 'UI\FrmAbastecimento.pas' {_FrmAbastecimento},
   UTanqueServico in 'APLICACAO\UTanqueServico.pas',
   UBombaServico in 'APLICACAO\UBombaServico.pas',
-  UAbastecimentoRelatorio in 'UI\Relatorios\UAbastecimentoRelatorio.pas' {_FrmRelatorio};
+  UAbastecimentoRelatorio in 'UI\Relatorios\UAbastecimentoRelatorio.pas' {_FrmRelatorio},
+  UISQLquery in 'REPOSITORIO\Interface\UISQLquery.pas',
+  UDBXquery in 'REPOSITORIO\Conexoes\UDBXquery.pas',
+  UDACquery in 'REPOSITORIO\Conexoes\UDACquery.pas';
 
 {$R *.res}
 
