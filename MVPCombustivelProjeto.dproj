@@ -51,7 +51,7 @@
         <DCC_K>false</DCC_K>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_UsePackage>RtmRxDB190;DBXSqliteDriver;ACBr_BoletoRL;fmx;TWebCam;ACBr_Diversos;IndySystem;TeeDB;frx19;DbxDevartMySqlDriver190;vclib;inetdbbde;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;RtmRxBDE190;Rave110VCL;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;dbxcds;ACBr_Comum;DatasnapConnectorsFreePascal;MetropolisUILiveTile;vcldb;vcldsnap;ACBr_MDFeDamdfeRL;DBXDb2Driver;frce;DBXOracleDriver;CustomIPTransport;vclZipForged19;ACBr_Serial;vclribbon;dsnap;IndyIPServer;ACBr_MDFe;fmxase;vcl;IndyCore;IndyIPCommon;CloudService;DBXMSSQLDriver;FmxTeeUI;CodeSiteExpressPkg;ACBr_Boleto;FireDACDBXDriver;inetdbxpress;frxe19;FireDACDb2Driver;adortl;ACBr_TCP;frxDB19;CheckBoxIQ;bindcompfmx;vcldbx;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;ACBr_NFe;Tee;DelSenhaDXE5;DBXOdbcDriver;dclZipForged19;CPortLibDXE;xmlrtl;svnui;ibxpress;ACBr_NFeDanfeRL;IndyProtocols;DBXMySQLDriver;RtmRxCtl190;vclactnband;soaprtl;bindengine;bindcompdbx;FMXTee;TeeUI;bindcompvcl;vclie;ACBr_OpenSSL;vcltouch;ACBr_Integrador;VclSmp;FireDACMSSQLDriver;VCLRESTComponents;DBXInformixDriver;Intraweb;ACBr_PIXCD;DataSnapConnectors;FireDACDataSnapDriver;dsnapcon;DBXFirebirdDriver;inet;fmxobj;vclx;svn;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;DelPrintDXE5;bdertl;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>RtmRxDB190;DBXSqliteDriver;ACBr_BoletoRL;fmx;TWebCam;ACBr_Diversos;IndySystem;TeeDB;frx19;DbxDevartMySqlDriver190;vclib;inetdbbde;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;RtmRxBDE190;Rave110VCL;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;dbxcds;ACBr_Comum;DatasnapConnectorsFreePascal;MetropolisUILiveTile;vcldb;vcldsnap;ACBr_MDFeDamdfeRL;DBXDb2Driver;frce;DBXOracleDriver;CustomIPTransport;vclZipForged19;ACBr_Serial;vclribbon;dsnap;IndyIPServer;ACBr_MDFe;fmxase;vcl;IndyCore;IndyIPCommon;CloudService;DBXMSSQLDriver;FmxTeeUI;CodeSiteExpressPkg;ACBr_Boleto;FireDACDBXDriver;inetdbxpress;frxe19;FireDACDb2Driver;adortl;ACBr_TCP;frxDB19;CheckBoxIQ;bindcompfmx;vcldbx;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;ACBr_NFe;Tee;DelSenhaDXE5;DBXOdbcDriver;dclZipForged19;CPortLibDXE;xmlrtl;svnui;ibxpress;ACBr_NFeDanfeRL;IndyProtocols;DBXMySQLDriver;RtmRxCtl190;vclactnband;soaprtl;bindengine;bindcompdbx;FMXTee;TeeUI;bindcompvcl;vclie;ACBr_OpenSSL;vcltouch;ACBr_Integrador;VclSmp;FireDACMSSQLDriver;VCLRESTComponents;DBXInformixDriver;Intraweb;ACBr_PIXCD;DataSnapConnectors;FireDACDataSnapDriver;dsnapcon;DBXFirebirdDriver;inet;fmxobj;vclx;svn;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;DelPrintDXE5;bdertl;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;FireDACPgDriver;FireDACCommonDriver;FireDACASADriver;FireDACODBCDriver;FireDACMSAccDriver;FireDACIBDriver;FireDACMySQLDriver;FireDACSqliteDriver;FireDACADSDriver;vclFireDAC;FireDAC;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
@@ -59,7 +59,7 @@
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <DCC_UsePackage>DBXSqliteDriver;fmx;IndySystem;TeeDB;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;vcldb;vcldsnap;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;IndyIPCommon;CloudService;DBXMSSQLDriver;FmxTeeUI;FireDACDBXDriver;inetdbxpress;FireDACDb2Driver;adortl;bindcompfmx;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;Tee;DBXOdbcDriver;xmlrtl;ibxpress;IndyProtocols;DBXMySQLDriver;vclactnband;soaprtl;bindengine;bindcompdbx;FMXTee;TeeUI;bindcompvcl;vclie;vcltouch;VclSmp;FireDACMSSQLDriver;VCLRESTComponents;DBXInformixDriver;Intraweb;DataSnapConnectors;FireDACDataSnapDriver;dsnapcon;DBXFirebirdDriver;inet;fmxobj;vclx;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>DBXSqliteDriver;fmx;IndySystem;TeeDB;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;vcldb;vcldsnap;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;IndyIPCommon;CloudService;DBXMSSQLDriver;FmxTeeUI;FireDACDBXDriver;inetdbxpress;FireDACDb2Driver;adortl;bindcompfmx;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;Tee;DBXOdbcDriver;xmlrtl;ibxpress;IndyProtocols;DBXMySQLDriver;vclactnband;soaprtl;bindengine;bindcompdbx;FMXTee;TeeUI;bindcompvcl;vclie;vcltouch;VclSmp;FireDACMSSQLDriver;VCLRESTComponents;DBXInformixDriver;Intraweb;DataSnapConnectors;FireDACDataSnapDriver;dsnapcon;DBXFirebirdDriver;inet;fmxobj;vclx;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;FireDACPgDriver;FireDACCommonDriver;FireDACASADriver;FireDACODBCDriver;FireDACMSAccDriver;FireDACIBDriver;FireDACMySQLDriver;FireDACSqliteDriver;FireDACADSDriver;vclFireDAC;FireDAC;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -114,6 +114,9 @@
             <Form>_FrmRelatorio</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="REPOSITORIO\Interface\UISQLquery.pas"/>
+        <DCCReference Include="REPOSITORIO\Conexoes\UDBXquery.pas"/>
+        <DCCReference Include="REPOSITORIO\Conexoes\UDACquery.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -185,6 +188,9 @@
                     <Source Name="MainSource">MVPCombustivelProjeto.dpr</Source>
                 </Source>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclBindCompFireDAC190.bpl">LiveBinding Expression Components FireDac</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclFMXFireDAC190.bpl">Embarcadero FMX FireDAC Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclVclFireDAC190.bpl">Embarcadero VCL FireDAC Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k190.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp190.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>

@@ -2,18 +2,19 @@ unit UTanqueRepositorio;
 
 interface
  uses
-   System.Generics.Collections, Data.SqlExpr, tanque,EnumTipoCombustivel;
+   System.Generics.Collections, Data.SqlExpr, tanque,EnumTipoCombustivel,
+  UISQLquery;
 
  type TTanqueRepositorio=class
     private
-       FSQLQuery : TSQLQuery;
+       FSQLQuery : ISQLquery;
     public
        procedure Adicionar(pTanque : TTanque);
        procedure Remover(pId : integer);
        function ObterPorId(pId : integer) : TTanque; virtual;
        function ObterTodas() : TObjectList<TTanque>;
 
-       constructor Create(pSQLQuery : TSQLQuery);
+       constructor Create(pSQLQuery : ISQLquery);
  end;
 
 implementation
@@ -23,7 +24,7 @@ uses
 
 { TTanqueRepositorio }
 
-constructor TTanqueRepositorio.Create(pSQLQuery: TSQLQuery);
+constructor TTanqueRepositorio.Create(pSQLQuery: ISQLquery);
 begin
     FSQLQuery := pSQLQuery;
 end;

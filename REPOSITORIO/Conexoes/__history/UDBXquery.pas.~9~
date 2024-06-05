@@ -1,0 +1,60 @@
+unit UDBXquery;
+
+interface
+
+uses
+ UISQLquery, Data.SqlExpr;
+
+
+ type TDBXquery = class(TInterfacedObject,ISQLquery)
+  private
+     FSQL : string;
+     FSQLQuery : TSQLQuery;
+  public
+     procedure Clear;
+     procedure Add(pcnValor : string);
+     procedure Execute();
+     function SQL(): ISQLquery;
+     function Open(pValor : string) : TObject;
+     constructor Create(pSQLQuery : TSQLQuery);
+ end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+{ TDBXquery }
+
+procedure TDBXquery.Add(pcnValor : string);
+begin
+   FSQLQuery.SQL.Add(pcnValor);
+end;
+
+procedure TDBXquery.Clear;
+begin
+    FSQL := string.empty;
+end;
+
+constructor TDBXquery.Create(pSQLQuery : TSQLQuery);
+begin
+    FSQLQuery := pSQLQuery;
+    Clear;
+end;
+
+procedure TDBXquery.Execute;
+begin
+    FSQLQuery.ExecSQL();
+end;
+
+function TDBXquery.Open(pValor: string): TObject;
+begin
+    Result := FSQLQuery.Open;
+end;
+
+function TDBXquery.SQL: ISQLquery;
+begin
+
+end;
+
+end.

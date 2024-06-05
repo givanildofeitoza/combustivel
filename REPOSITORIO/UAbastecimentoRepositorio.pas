@@ -3,11 +3,11 @@ unit UAbastecimentoRepositorio;
 interface
 
 uses
-  System.Generics.Collections, Data.SqlExpr, abastecimento;
+  System.Generics.Collections, Data.SqlExpr, abastecimento, UISQLquery;
 
 type TAbastecimentoRepositorio = class
   private
-    FSQLQuery : TSQLQuery;
+    FSQLQuery : ISQLquery;
   public
     function ObeterPorId(pId : integer) : TAbastecimento;
     function ObeterPorData(pDataInicial,pDataFinal : TDate) : TObjectList<TAbastecimento>;
@@ -15,7 +15,7 @@ type TAbastecimentoRepositorio = class
     procedure GerarAbastecimento(pAbastecimento : TAbastecimento); virtual;
     function FormatarDataBanco(pData:String):TDate;
 
-    Constructor Create(pQuery : TSQLQuery);
+    Constructor Create(pQuery : ISQLquery);
 end;
 
 implementation
@@ -25,7 +25,7 @@ uses
 
 { TAbastecimentoRepositorio }
 
-constructor TAbastecimentoRepositorio.Create(pQuery : TSQLQuery);
+constructor TAbastecimentoRepositorio.Create(pQuery : ISQLquery);
 begin
     FSQLQuery := pQuery;
 end;
