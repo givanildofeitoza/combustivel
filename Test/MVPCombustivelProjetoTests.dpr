@@ -23,7 +23,10 @@ uses
   UTanqueRepositorio in '..\REPOSITORIO\UTanqueRepositorio.pas',
   abastecimento in '..\DOMINIO\abastecimento.pas',
   bomba in '..\DOMINIO\bomba.pas',
-  tanque in '..\DOMINIO\tanque.pas';
+  tanque in '..\DOMINIO\tanque.pas',
+  UDACquery in '..\REPOSITORIO\ConexoesAdapter\UDACquery.pas',
+  UDBXquery in '..\REPOSITORIO\ConexoesAdapter\UDBXquery.pas',
+  UISQLquery in '..\REPOSITORIO\Interface\UISQLquery.pas';
 
 {$R *.RES}
 

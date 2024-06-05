@@ -43,12 +43,14 @@ TMockAbastecimentoRepositorio = class(TAbastecimentoRepositorio)
   published
     procedure TestcalcularImposto;
     procedure TestAbastecer;
+    procedure TestCalcularValorAbastecido;
   end;
 
 implementation
 
 uses
-  Data.SqlExpr, System.SysUtils;
+  Data.SqlExpr, System.SysUtils, UISQLquery, UDACquery,
+  UDBXquery;
 
 
 { TMockAbastecimentoRepositorio }
@@ -60,9 +62,9 @@ end;
 
 procedure TestTAbastecimentoServico.SetUp;
 var
-  Query : TSQLQuery;
+  Query : ISQLquery;
 begin
-   Query := TSQLQuery.Create(nil);
+   Query := TDBXquery.Create(TSQLQuery.Create(nil));
   FAbastecimentoServico := TAbastecimentoServico.Create(TMockBombaRepositorio.Create(Query),
                                                         TMockTanqueRepositorio.Create(Query),
                                                         TMockAbastecimentoRepositorio.Create(Query));
@@ -90,6 +92,18 @@ begin
   ReturnValue := FAbastecimentoServico.calcularImposto(pBaseDeCalculo, pAliquota);
 end;
 
+procedure TestTAbastecimentoServico.TestCalcularValorAbastecido;
+var
+  ReturnValue: Double;
+  pQtdLitros,
+  pVunitario: double;
+begin
+    pVunitario := 5.2;
+    pQtdLitros := 2;
+    ReturnValue := FAbastecimentoServico.CalcularValorAbastecido(pQtdLitros,pVunitario);
+    CheckEquals(FormatCurr('###,##0.00',10.40),FormatCurr('###,##0.00',ReturnValue),'Cálculo do valor abastecido está incorreto');
+end;
+
 procedure TestTAbastecimentoServico.TestAbastecer;
 var
   ReturnValue: TAbastecimentoDTO;
@@ -100,13 +114,14 @@ begin
    pAbastecimento.Valor := 120;
    pAbastecimento.Data  := now;
    pAbastecimento.Litros := 20;
+   pAbastecimento.Aliquota := 13;
    pAbastecimento.Imposto:= 15.60;
    pAbastecimento.IdBomba := 1;
    pAbastecimento.Vunitario := 2.8;
 
    // TODO: Validate method results
    FAbastecimentoServico.Abastecer(pAbastecimento);
-   Check(( FormatCurr('###,##0.00',ReturnValue.Imposto)=FormatCurr('###,##0.00',FAbastecimentoServico.calcularImposto(120, 13))) ,'Cálculo do imposto diverge da alíquota de 13%');
+   CheckEquals(FormatCurr('###,##0.00',pAbastecimento.Imposto),FormatCurr('###,##0.00',FAbastecimentoServico.calcularImposto(120, 13)) ,'Cálculo do imposto diverge da alíquota de 13%');
    pAbastecimento.Free;
 end;
 

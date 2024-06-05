@@ -37,7 +37,6 @@ type
     FTanqueServico : TTanqueServico;
     FBombaServico : TBombaServico;
 
-    function CalcularTotal(pQtdLitros,pVnitatio : double) : Double;
   public
     { Public declarations }
     constructor Create(Awoner : TComponent; 
@@ -96,14 +95,8 @@ end;
 
 procedure T_FrmAbastecimento.BitBtn2Enter(Sender: TObject);
 begin
-   TxtTotal.Text := FormatFloat('###,##,0.00',CalcularTotal(StrToFloat(TxtqtdLitrosAbastecer.Text),
+   TxtTotal.Text := FormatFloat('###,##,0.00',FAbastecimentoServico.CalcularValorAbastecido(StrToFloat(TxtqtdLitrosAbastecer.Text),
                     StrToFloat(txtPrecoUnitario.Text)));
-end;
-
-function T_FrmAbastecimento.CalcularTotal(pQtdLitros,
-  pVnitatio: double): Double;
-begin
-   Result :=  StrToFloat(FormatFloat('###,##,0.00',pQtdLitros *  pVnitatio));
 end;
 
 constructor T_FrmAbastecimento.Create(Awoner: TComponent;

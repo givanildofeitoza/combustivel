@@ -43,6 +43,7 @@ TAbastecimentoServico=class
         function ObterAbastecimentoCompleto(Id : integer) : TAbastecimentoDTO;
         function ObterAbastecimentoCompletoPorData(pDataInicio,pDataFim : TDate) : TObjectList<TAbastecimentoDTO>;
         function calcularImposto(pBaseDeCalculo,pAliquota : Double):Double;
+        function CalcularValorAbastecido(pQtdLitros, pVunitario : double) : double;
        constructor Create(pBombaRepositorio : TBombaRepositorio;
         pTanqueRepositorio : TTanqueRepositorio;
         pAbastecimentoRepositorio : TAbastecimentoRepositorio);
@@ -55,7 +56,13 @@ uses
 
 { TAbastecimentoServico }
 
- constructor TAbastecimentoServico.Create(pBombaRepositorio: TBombaRepositorio;
+function TAbastecimentoServico.CalcularValorAbastecido(pQtdLitros,
+  pVunitario: double): double;
+begin
+       Result :=  StrToFloat(FormatFloat('###,##,0.00',pQtdLitros *  pVunitario));
+end;
+
+constructor TAbastecimentoServico.Create(pBombaRepositorio: TBombaRepositorio;
   pTanqueRepositorio: TTanqueRepositorio;
   pAbastecimentoRepositorio: TAbastecimentoRepositorio);
 begin

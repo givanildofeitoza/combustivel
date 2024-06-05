@@ -18,8 +18,8 @@ uses
   UBombaServico in 'APLICACAO\UBombaServico.pas',
   UAbastecimentoRelatorio in 'UI\Relatorios\UAbastecimentoRelatorio.pas' {_FrmRelatorio},
   UISQLquery in 'REPOSITORIO\Interface\UISQLquery.pas',
-  UDBXquery in 'REPOSITORIO\Conexoes\UDBXquery.pas',
-  UDACquery in 'REPOSITORIO\Conexoes\UDACquery.pas';
+  UDACquery in 'REPOSITORIO\ConexoesAdapter\UDACquery.pas',
+  UDBXquery in 'REPOSITORIO\ConexoesAdapter\UDBXquery.pas';
 
 {$R *.res}
 

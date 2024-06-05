@@ -115,8 +115,8 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="REPOSITORIO\Interface\UISQLquery.pas"/>
-        <DCCReference Include="REPOSITORIO\Conexoes\UDBXquery.pas"/>
-        <DCCReference Include="REPOSITORIO\Conexoes\UDACquery.pas"/>
+        <DCCReference Include="REPOSITORIO\ConexoesAdapter\UDACquery.pas"/>
+        <DCCReference Include="REPOSITORIO\ConexoesAdapter\UDBXquery.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
