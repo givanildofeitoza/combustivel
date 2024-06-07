@@ -2,8 +2,8 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'SISTEMA DE CONTROLE DE ABASTECIMENTOS'
-  ClientHeight = 121
-  ClientWidth = 846
+  ClientHeight = 129
+  ClientWidth = 997
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -56,8 +56,8 @@ object Form2: TForm2
     SQL.Strings = (
       'SELECT * FROM ABASTECIMENTO ORDER BY IDBOMBA,ID')
     SQLConnection = ConexaoSQLITE
-    Left = 601
-    Top = 64
+    Left = 689
+    Top = 8
   end
   object ConexaoSQLITE: TSQLConnection
     ConnectionName = 'SQLITECONNECTION'
@@ -66,21 +66,30 @@ object Form2: TForm2
     Params.Strings = (
       'DriverName=Sqlite'
       'Database=combustivel.db')
-    Left = 600
+    Left = 608
     Top = 8
   end
   object ConexaoSQLITEDAC: TFDConnection
+    ConnectionName = 'FireDacConnection'
     Params.Strings = (
-      'DriverID=SQLite'
-      'DataBase=combustivel.db'
-      'OpenMode=ReadWrite')
+      
+        'Database=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\W' +
+        'in32\Debug\combustivel.db'
+      'OpenMode=ReadWrite'
+      'LockingMode=Normal'
+      'Synchronous=Normal'
+      'DriverID=SQLite')
     LoginPrompt = False
-    Left = 704
-    Top = 8
+    Left = 600
+    Top = 64
   end
   object qrPadraoDAC: TFDQuery
     Connection = ConexaoSQLITEDAC
-    Left = 705
+    Left = 697
+    Top = 64
+  end
+  object fdphysqltdrvrlnk: TFDPhysSQLiteDriverLink
+    Left = 784
     Top = 64
   end
 end

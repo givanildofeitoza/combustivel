@@ -50,31 +50,12 @@ object Form2: TForm2
     TabOrder = 3
     OnClick = BitBtn4Click
   end
-  object qrPadrao: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'SELECT * FROM ABASTECIMENTO ORDER BY IDBOMBA,ID')
-    SQLConnection = ConexaoSQLITE
-    Left = 689
-    Top = 8
-  end
-  object ConexaoSQLITE: TSQLConnection
-    ConnectionName = 'SQLITECONNECTION'
-    DriverName = 'Sqlite'
-    LoginPrompt = False
-    Params.Strings = (
-      'DriverName=Sqlite'
-      'Database=combustivel.db')
-    Left = 608
-    Top = 8
-  end
   object ConexaoSQLITEDAC: TFDConnection
     ConnectionName = 'FireDacConnection'
     Params.Strings = (
       
-        'Database=C:\Givanildo\PROJETOS\Processos Seletivos\COMBUSTIVEL\W' +
-        'in32\Debug\combustivel.db'
+        'Database=C:\givanildo\Projetos\COMBUSTIVEL\Win32\Debug\combustiv' +
+        'el.db'
       'OpenMode=ReadWrite'
       'LockingMode=Normal'
       'Synchronous=Normal'

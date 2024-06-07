@@ -11,11 +11,15 @@ uses
   UTanqueRepositorio in 'REPOSITORIO\UTanqueRepositorio.pas',
   UAbastecimentoRepositorio in 'REPOSITORIO\UAbastecimentoRepositorio.pas',
   UAbastecimentoSerivo in 'APLICACAO\UAbastecimentoSerivo.pas',
-  FrmBomba in 'UI\FrmBomba.pas' {Form1},
-  FrmTanque in 'UI\FrmTanque.pas' {Form3},
-  FrmAbastecimento in 'UI\FrmAbastecimento.pas' {Form4},
+  FrmBomba in 'UI\FrmBomba.pas' {_FrmBomba},
+  FrmTanque in 'UI\FrmTanque.pas' {_FrmTanque},
+  FrmAbastecimento in 'UI\FrmAbastecimento.pas' {_FrmAbastecimento},
   UTanqueServico in 'APLICACAO\UTanqueServico.pas',
-  UBombaServico in 'APLICACAO\UBombaServico.pas';
+  UBombaServico in 'APLICACAO\UBombaServico.pas',
+  UAbastecimentoRelatorio in 'UI\Relatorios\UAbastecimentoRelatorio.pas' {_FrmRelatorio},
+  UISQLquery in 'REPOSITORIO\Interface\UISQLquery.pas',
+  UDACquery in 'REPOSITORIO\ConexoesAdapter\UDACquery.pas',
+  UDBXquery in 'REPOSITORIO\ConexoesAdapter\UDBXquery.pas';
 
 {$R *.res}
 
@@ -23,8 +27,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TForm2, Form2);
-  Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TForm3, Form3);
-  Application.CreateForm(TForm4, Form4);
+  Application.CreateForm(T_FrmRelatorio, _FrmRelatorio);
   Application.Run;
 end.

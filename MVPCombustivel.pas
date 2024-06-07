@@ -16,8 +16,6 @@ uses
 
 type
   TForm2 = class(TForm)
-    qrPadrao: TSQLQuery;
-    ConexaoSQLITE: TSQLConnection;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
@@ -49,7 +47,7 @@ implementation
 
 uses
   bomba, FrmTanque, FrmBomba, FrmAbastecimento, UAbastecimentoRelatorio,
-  UDBXquery, UDACquery, UISQLquery;
+  UDACquery, UISQLquery;
 
 {$R *.dfm}
 
@@ -117,15 +115,11 @@ end;
 
 procedure TForm2.FormShow(Sender: TObject);
 var
-  ConexaoFIREDAC : Boolean;
   SQLQPadrao :  ISQLquery;
-
-  function SQLQueryFactoryMethod(ConexaoFIREDAC : Boolean):ISQLquery;
+  function SQLQueryFactoryMethod(const ConexaoFIREDAC : Boolean= True):ISQLquery;
   begin
      if ConexaoFIREDAC then
         Result := TDACquery.Create(qrPadraoDAC)
-     else
-        Result := TDBXquery.Create(qrPadrao);
   end;
 begin
    {
@@ -133,8 +127,7 @@ begin
      o componente do FIREDAC. Agora é possível utilizar os dois componentes FIREDAC e DBEXPRES
      sem precisar mexer nos repositórios.
    }
-    ConexaoFIREDAC := False;
-    SQLQPadrao :=  SQLQueryFactoryMethod(ConexaoFIREDAC);
+    SQLQPadrao :=  SQLQueryFactoryMethod();
     FBombaRepositorio := TbombaRepositorio.Create(SQLQPadrao);
     FTanquRepositorio := TTanqueRepositorio.Create(SQLQPadrao);
     FAbastecimentoRepositorio := TAbastecimentoRepositorio.Create(SQLQPadrao);
