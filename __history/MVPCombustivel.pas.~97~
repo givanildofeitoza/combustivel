@@ -16,8 +16,6 @@ uses
 
 type
   TForm2 = class(TForm)
-    qrPadrao: TSQLQuery;
-    ConexaoSQLITE: TSQLConnection;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
@@ -49,7 +47,7 @@ implementation
 
 uses
   bomba, FrmTanque, FrmBomba, FrmAbastecimento, UAbastecimentoRelatorio,
-  UDBXquery, UDACquery, UISQLquery;
+  UDACquery, UISQLquery;
 
 {$R *.dfm}
 
@@ -81,14 +79,12 @@ begin
    _FrmRelatorio := T_FrmRelatorio.Create(Self);
    Application.CreateForm(T_FrmRelatorio, _FrmRelatorio);
 
-   _FrmRelatorio.SQLDataSet1.SQLConnection := ConexaoSQLITE;
-   _FrmRelatorio.SQLQuery1.SQL.Clear;
-   _FrmRelatorio.SQLDataSet1.CommandText:=' SELECT A.ID,A.DATA,A.VALOR,A.IMPOSTO,A.LITROS,'
+   _FrmRelatorio.FDQrpadrao.SQL.Text:=' SELECT A.ID,A.DATA,A.VALOR,A.IMPOSTO,A.LITROS,'
         +' B.NOMEBOMBA,T.COMBUSTIVEL'
         +' FROM ABASTECIMENTO AS A, BOMBA AS B, TANQUE AS T '
         +' WHERE B.ID = A.IDBOMBA AND B.IDTANQUE = T.ID '
         +' AND DATA BETWEEN "2024-06-01" AND "2024-06-30" ORDER BY A.ID,A.IDBOMBA';
-   _FrmRelatorio.SQLDataSet1.Open;
+   _FrmRelatorio.FDQrpadrao.Open;
    _FrmRelatorio.ClientDataSet1.OPEN;
    _FrmRelatorio.ClientDataSet1.Refresh;
    _FrmRelatorio.labelData1.Caption :='01/06/2024';
@@ -119,15 +115,11 @@ end;
 
 procedure TForm2.FormShow(Sender: TObject);
 var
-  ConexaoFIREDAC : Boolean;
   SQLQPadrao :  ISQLquery;
-
-  function SQLQueryFactoryMethod(ConexaoFIREDAC : Boolean):ISQLquery;
+  function SQLQueryFactoryMethod(const ConexaoFIREDAC : Boolean= True):ISQLquery;
   begin
      if ConexaoFIREDAC then
         Result := TDACquery.Create(qrPadraoDAC)
-     else
-        Result := TDBXquery.Create(qrPadrao);
   end;
 begin
    {
@@ -135,21 +127,11 @@ begin
      o componente do FIREDAC. Agora é possível utilizar os dois componentes FIREDAC e DBEXPRES
      sem precisar mexer nos repositórios.
    }
-    ConexaoFIREDAC := False;
-    SQLQPadrao :=  SQLQueryFactoryMethod(ConexaoFIREDAC);
+    SQLQPadrao :=  SQLQueryFactoryMethod();
+    FBombaRepositorio := TbombaRepositorio.Create(SQLQPadrao);
+    FTanquRepositorio := TTanqueRepositorio.Create(SQLQPadrao);
+    FAbastecimentoRepositorio := TAbastecimentoRepositorio.Create(SQLQPadrao);
 
-    if ConexaoFIREDAC then
-    begin
-      FBombaRepositorio := TbombaRepositorio.Create(SQLQPadrao);
-      FTanquRepositorio := TTanqueRepositorio.Create(SQLQPadrao);
-      FAbastecimentoRepositorio := TAbastecimentoRepositorio.Create(SQLQPadrao);
-    end
-    else
-    begin
-      FBombaRepositorio := TbombaRepositorio.Create(SQLQPadrao);
-      FTanquRepositorio := TTanqueRepositorio.Create(SQLQPadrao);
-      FAbastecimentoRepositorio := TAbastecimentoRepositorio.Create(SQLQPadrao);
-    end;
     FBombaServico := TbombaServico.Create(FBombaRepositorio);
     FTanquServico := TTanqueServico.Create(FTanquRepositorio);
     FAbastecimentoServico := TAbastecimentoServico.Create(FBombaRepositorio,

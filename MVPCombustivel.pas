@@ -116,7 +116,7 @@ end;
 procedure TForm2.FormShow(Sender: TObject);
 var
   SQLQPadrao :  ISQLquery;
-  function SQLQueryFactoryMethod(const ConexaoFIREDAC : Boolean= True):ISQLquery;
+  function SQLQueryFactoryMethod(ConexaoFIREDAC : Boolean= True):ISQLquery;
   begin
      if ConexaoFIREDAC then
         Result := TDACquery.Create(qrPadraoDAC)
