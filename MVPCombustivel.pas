@@ -81,14 +81,12 @@ begin
    _FrmRelatorio := T_FrmRelatorio.Create(Self);
    Application.CreateForm(T_FrmRelatorio, _FrmRelatorio);
 
-   _FrmRelatorio.SQLDataSet1.SQLConnection := ConexaoSQLITE;
-   _FrmRelatorio.SQLQuery1.SQL.Clear;
-   _FrmRelatorio.SQLDataSet1.CommandText:=' SELECT A.ID,A.DATA,A.VALOR,A.IMPOSTO,A.LITROS,'
+   _FrmRelatorio.FDQrpadrao.SQL.Text:=' SELECT A.ID,A.DATA,A.VALOR,A.IMPOSTO,A.LITROS,'
         +' B.NOMEBOMBA,T.COMBUSTIVEL'
         +' FROM ABASTECIMENTO AS A, BOMBA AS B, TANQUE AS T '
         +' WHERE B.ID = A.IDBOMBA AND B.IDTANQUE = T.ID '
         +' AND DATA BETWEEN "2024-06-01" AND "2024-06-30" ORDER BY A.ID,A.IDBOMBA';
-   _FrmRelatorio.SQLDataSet1.Open;
+   _FrmRelatorio.FDQrpadrao.Open;
    _FrmRelatorio.ClientDataSet1.OPEN;
    _FrmRelatorio.ClientDataSet1.Refresh;
    _FrmRelatorio.labelData1.Caption :='01/06/2024';

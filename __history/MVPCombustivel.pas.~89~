@@ -49,7 +49,7 @@ implementation
 
 uses
   bomba, FrmTanque, FrmBomba, FrmAbastecimento, UAbastecimentoRelatorio,
-  UDBXquery, UDACquery;
+  UDBXquery, UDACquery, UISQLquery;
 
 {$R *.dfm}
 
@@ -119,26 +119,28 @@ end;
 
 procedure TForm2.FormShow(Sender: TObject);
 var
-  qrPadrao2 : TDBXquery;
-  qrPadraoDac2 : TDACquery;
-  Conexao : string;
-begin
-    Conexao := 'DBX';
+  ConexaoFIREDAC : Boolean;
+  SQLQPadrao :  ISQLquery;
 
-    if Conexao = 'FIREDAC' then
-    begin
-      qrPadraoDac2 := TDACquery.Create(qrPadraoDAC);
-      FBombaRepositorio := TbombaRepositorio.Create(qrPadraoDac2);
-      FTanquRepositorio := TTanqueRepositorio.Create(qrPadraoDac2);
-      FAbastecimentoRepositorio := TAbastecimentoRepositorio.Create(qrPadraoDac2);
-    end
-    else
-    begin
-      qrPadrao2    := TDBXquery.Create(qrPadrao);
-      FBombaRepositorio := TbombaRepositorio.Create(qrPadrao2);
-      FTanquRepositorio := TTanqueRepositorio.Create(qrPadrao2);
-      FAbastecimentoRepositorio := TAbastecimentoRepositorio.Create(qrPadrao2);
-    end;
+  function SQLQueryFactoryMethod(ConexaoFIREDAC : Boolean):ISQLquery;
+  begin
+     if ConexaoFIREDAC then
+        Result := TDACquery.Create(qrPadraoDAC)
+     else
+        Result := TDBXquery.Create(qrPadrao);
+  end;
+begin
+   {
+     Este adapter de conexões foi criado para atender o requisito de conexão utilizando
+     o componente do FIREDAC. Agora é possível utilizar os dois componentes FIREDAC e DBEXPRES
+     sem precisar mexer nos repositórios.
+   }
+    ConexaoFIREDAC := False;
+    SQLQPadrao :=  SQLQueryFactoryMethod(ConexaoFIREDAC);
+    FBombaRepositorio := TbombaRepositorio.Create(SQLQPadrao);
+    FTanquRepositorio := TTanqueRepositorio.Create(SQLQPadrao);
+    FAbastecimentoRepositorio := TAbastecimentoRepositorio.Create(SQLQPadrao);
+
     FBombaServico := TbombaServico.Create(FBombaRepositorio);
     FTanquServico := TTanqueServico.Create(FTanquRepositorio);
     FAbastecimentoServico := TAbastecimentoServico.Create(FBombaRepositorio,

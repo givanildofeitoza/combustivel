@@ -17,13 +17,17 @@ type
     RLBand1: TRLBand;
     RLLabel1: TRLLabel;
     RLBand2: TRLBand;
+    SQLQuery1: TSQLQuery;
     DataSource1: TDataSource;
     ClientDataSet1: TClientDataSet;
     DataSetProvider1: TDataSetProvider;
     RLDBText1: TRLDBText;
+    SQLQuery1ID: TLargeintField;
+    SQLDataSet1: TSQLDataSet;
     RLDBText2: TRLDBText;
     RLDBText3: TRLDBText;
     RLDBText4: TRLDBText;
+    ClientDataSet1DATA: TWideMemoField;
     ClientDataSet1VALOR: TFloatField;
     ClientDataSet1IMPOSTO: TFloatField;
     ClientDataSet1LITROS: TFloatField;
@@ -58,7 +62,6 @@ type
     ConexaoDACRel: TFDConnection;
     FDQrpadrao: TFDQuery;
     ClientDataSet1ID: TIntegerField;
-    ClientDataSet1DATA: TDateField;
   private
     { Private declarations }
   public

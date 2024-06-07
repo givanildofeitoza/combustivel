@@ -101,10 +101,10 @@ object _FrmRelatorio: T_FrmRelatorio
       Left = 38
       Top = 173
       Width = 718
-      Height = 48
+      Height = 28
       object RLDBText1: TRLDBText
         Left = 22
-        Top = 16
+        Top = 5
         Width = 49
         Height = 16
         DataField = 'ID'
@@ -113,7 +113,7 @@ object _FrmRelatorio: T_FrmRelatorio
       end
       object RLDBText2: TRLDBText
         Left = 102
-        Top = 16
+        Top = 5
         Width = 38
         Height = 16
         DataField = 'DATA'
@@ -122,7 +122,7 @@ object _FrmRelatorio: T_FrmRelatorio
       end
       object RLDBText3: TRLDBText
         Left = 184
-        Top = 16
+        Top = 5
         Width = 48
         Height = 16
         DataField = 'VALOR'
@@ -131,7 +131,7 @@ object _FrmRelatorio: T_FrmRelatorio
       end
       object RLDBText4: TRLDBText
         Left = 344
-        Top = 16
+        Top = 5
         Width = 63
         Height = 16
         DataField = 'IMPOSTO'
@@ -140,7 +140,7 @@ object _FrmRelatorio: T_FrmRelatorio
       end
       object RLDBText5: TRLDBText
         Left = 435
-        Top = 16
+        Top = 5
         Width = 91
         Height = 16
         DataField = 'NOMEBOMBA'
@@ -149,7 +149,7 @@ object _FrmRelatorio: T_FrmRelatorio
       end
       object RLDBText6: TRLDBText
         Left = 587
-        Top = 16
+        Top = 5
         Width = 96
         Height = 16
         DataField = 'COMBUSTIVEL'
@@ -158,7 +158,7 @@ object _FrmRelatorio: T_FrmRelatorio
       end
       object RLDBText7: TRLDBText
         Left = 264
-        Top = 16
+        Top = 5
         Width = 49
         Height = 16
         DataField = 'LITROS'
@@ -264,6 +264,143 @@ object _FrmRelatorio: T_FrmRelatorio
         ParentFont = False
       end
     end
+    object RLBand4: TRLBand
+      Left = 38
+      Top = 201
+      Width = 718
+      Height = 120
+      BandType = btColumnFooter
+      object RLLabel10: TRLLabel
+        Left = 22
+        Top = 93
+        Width = 206
+        Height = 16
+        Caption = 'QTD TOTAL ABASTECIMENTOS:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel11: TRLLabel
+        Left = 381
+        Top = 93
+        Width = 120
+        Height = 16
+        Caption = 'VALOR TOTAL R$:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblQtdTotal: TRLLabel
+        Left = 243
+        Top = 93
+        Width = 29
+        Height = 16
+        Caption = '0.00'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object LblSomaToal: TRLLabel
+        Left = 526
+        Top = 93
+        Width = 29
+        Height = 16
+        Caption = '0.00'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel13: TRLLabel
+        Left = 22
+        Top = 49
+        Width = 56
+        Height = 16
+        Caption = 'LITROS:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel14: TRLLabel
+        Left = 22
+        Top = 71
+        Width = 64
+        Height = 16
+        Caption = 'Gasolina:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel15: TRLLabel
+        Left = 163
+        Top = 71
+        Width = 39
+        Height = 16
+        Caption = 'Disel:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblGas: TRLLabel
+        Left = 92
+        Top = 71
+        Width = 29
+        Height = 16
+        Caption = '0.00'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblDisel: TRLLabel
+        Left = 208
+        Top = 71
+        Width = 29
+        Height = 16
+        Caption = '0.00'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel16: TRLLabel
+        Left = 304
+        Top = 25
+        Width = 112
+        Height = 16
+        Caption = 'TOTALIZADORES'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
   end
   object SQLQuery1: TSQLQuery
     Params = <>
@@ -318,7 +455,7 @@ object _FrmRelatorio: T_FrmRelatorio
     end
   end
   object DataSetProvider1: TDataSetProvider
-    DataSet = SQLDataSet1
+    DataSet = FDQrpadrao
     Left = 358
     Top = 481
   end
@@ -326,5 +463,19 @@ object _FrmRelatorio: T_FrmRelatorio
     Params = <>
     Left = 222
     Top = 449
+  end
+  object ConexaoDACRel: TFDConnection
+    Params.Strings = (
+      
+        'Database=C:\givanildo\Projetos\COMBUSTIVEL\Win32\Debug\combustiv' +
+        'el.db'
+      'DriverID=SQLite')
+    Left = 576
+    Top = 528
+  end
+  object FDQrpadrao: TFDQuery
+    Connection = ConexaoDACRel
+    Left = 600
+    Top = 464
   end
 end

@@ -402,22 +402,6 @@ object _FrmRelatorio: T_FrmRelatorio
       end
     end
   end
-  object SQLQuery1: TSQLQuery
-    Params = <>
-    SQL.Strings = (
-      'SELECT '
-      'A.ID,A.DATA,A.VALOR,A.IMPOSTO,A.LITROS,'
-      'B.NOMEBOMBA,T.COMBUSTIVEL'
-      'FROM ABASTECIMENTO AS A, BOMBA AS B, TANQUE AS T '
-      'WHERE B.ID = A.IDBOMBA'
-      'AND B.IDTANQUE = T.ID'
-      'ORDER BY A.ID,A.IDBOMBA')
-    Left = 358
-    Top = 377
-    object SQLQuery1ID: TLargeintField
-      FieldName = 'ID'
-    end
-  end
   object DataSource1: TDataSource
     DataSet = ClientDataSet1
     Left = 582
@@ -429,13 +413,6 @@ object _FrmRelatorio: T_FrmRelatorio
     ProviderName = 'DataSetProvider1'
     Left = 358
     Top = 425
-    object ClientDataSet1ID: TLargeintField
-      FieldName = 'ID'
-    end
-    object ClientDataSet1DATA: TWideMemoField
-      FieldName = 'DATA'
-      BlobType = ftWideMemo
-    end
     object ClientDataSet1VALOR: TFloatField
       FieldName = 'VALOR'
     end
@@ -453,15 +430,30 @@ object _FrmRelatorio: T_FrmRelatorio
       FieldName = 'COMBUSTIVEL'
       BlobType = ftWideMemo
     end
+    object ClientDataSet1ID: TIntegerField
+      FieldName = 'ID'
+    end
+    object ClientDataSet1DATA: TDateField
+      FieldName = 'DATA'
+    end
   end
   object DataSetProvider1: TDataSetProvider
-    DataSet = SQLDataSet1
+    DataSet = FDQrpadrao
     Left = 358
     Top = 481
   end
-  object SQLDataSet1: TSQLDataSet
-    Params = <>
-    Left = 222
-    Top = 449
+  object ConexaoDACRel: TFDConnection
+    Params.Strings = (
+      
+        'Database=C:\givanildo\Projetos\COMBUSTIVEL\Win32\Debug\combustiv' +
+        'el.db'
+      'DriverID=SQLite')
+    Left = 576
+    Top = 528
+  end
+  object FDQrpadrao: TFDQuery
+    Connection = ConexaoDACRel
+    Left = 576
+    Top = 464
   end
 end
