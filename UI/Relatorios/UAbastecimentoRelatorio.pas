@@ -59,6 +59,9 @@ type
     FDQrpadrao: TFDQuery;
     ClientDataSet1ID: TIntegerField;
     ClientDataSet1DATA: TDateField;
+    RLLabel17: TRLLabel;
+    RLDBText8: TRLDBText;
+    ClientDataSet1NOMETANQUE: TWideMemoField;
   private
     { Private declarations }
   public

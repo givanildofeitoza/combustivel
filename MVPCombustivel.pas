@@ -80,7 +80,7 @@ begin
    Application.CreateForm(T_FrmRelatorio, _FrmRelatorio);
 
    _FrmRelatorio.FDQrpadrao.SQL.Text:=' SELECT A.ID,A.DATA,A.VALOR,A.IMPOSTO,A.LITROS,'
-        +' B.NOMEBOMBA,T.COMBUSTIVEL'
+        +' B.NOMEBOMBA,T.COMBUSTIVEL,T.NOMETANQUE'
         +' FROM ABASTECIMENTO AS A, BOMBA AS B, TANQUE AS T '
         +' WHERE B.ID = A.IDBOMBA AND B.IDTANQUE = T.ID '
         +' AND DATA BETWEEN "2024-06-01" AND "2024-06-30" ORDER BY A.ID,A.IDBOMBA';

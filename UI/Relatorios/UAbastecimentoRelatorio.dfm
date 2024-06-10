@@ -112,7 +112,7 @@ object _FrmRelatorio: T_FrmRelatorio
         Text = ''
       end
       object RLDBText2: TRLDBText
-        Left = 102
+        Left = 78
         Top = 5
         Width = 38
         Height = 16
@@ -121,7 +121,7 @@ object _FrmRelatorio: T_FrmRelatorio
         Text = ''
       end
       object RLDBText3: TRLDBText
-        Left = 184
+        Left = 147
         Top = 5
         Width = 48
         Height = 16
@@ -130,7 +130,7 @@ object _FrmRelatorio: T_FrmRelatorio
         Text = ''
       end
       object RLDBText4: TRLDBText
-        Left = 344
+        Left = 296
         Top = 5
         Width = 63
         Height = 16
@@ -139,7 +139,7 @@ object _FrmRelatorio: T_FrmRelatorio
         Text = ''
       end
       object RLDBText5: TRLDBText
-        Left = 435
+        Left = 377
         Top = 5
         Width = 91
         Height = 16
@@ -148,7 +148,7 @@ object _FrmRelatorio: T_FrmRelatorio
         Text = ''
       end
       object RLDBText6: TRLDBText
-        Left = 587
+        Left = 504
         Top = 5
         Width = 96
         Height = 16
@@ -157,11 +157,20 @@ object _FrmRelatorio: T_FrmRelatorio
         Text = ''
       end
       object RLDBText7: TRLDBText
-        Left = 264
+        Left = 226
         Top = 5
         Width = 49
         Height = 16
         DataField = 'LITROS'
+        DataSource = DataSource1
+        Text = ''
+      end
+      object RLDBText8: TRLDBText
+        Left = 609
+        Top = 6
+        Width = 96
+        Height = 16
+        DataField = 'NOMETANQUE'
         DataSource = DataSource1
         Text = ''
       end
@@ -186,7 +195,7 @@ object _FrmRelatorio: T_FrmRelatorio
         ParentFont = False
       end
       object RLLabel3: TRLLabel
-        Left = 102
+        Left = 82
         Top = 10
         Width = 39
         Height = 16
@@ -199,7 +208,7 @@ object _FrmRelatorio: T_FrmRelatorio
         ParentFont = False
       end
       object RLLabel4: TRLLabel
-        Left = 184
+        Left = 147
         Top = 10
         Width = 69
         Height = 16
@@ -212,7 +221,7 @@ object _FrmRelatorio: T_FrmRelatorio
         ParentFont = False
       end
       object RLLabel5: TRLLabel
-        Left = 344
+        Left = 297
         Top = 10
         Width = 65
         Height = 16
@@ -225,7 +234,7 @@ object _FrmRelatorio: T_FrmRelatorio
         ParentFont = False
       end
       object RLLabel6: TRLLabel
-        Left = 264
+        Left = 227
         Top = 10
         Width = 52
         Height = 16
@@ -238,7 +247,7 @@ object _FrmRelatorio: T_FrmRelatorio
         ParentFont = False
       end
       object RLLabel7: TRLLabel
-        Left = 435
+        Left = 378
         Top = 10
         Width = 52
         Height = 16
@@ -251,11 +260,24 @@ object _FrmRelatorio: T_FrmRelatorio
         ParentFont = False
       end
       object RLLabel8: TRLLabel
-        Left = 587
+        Left = 505
         Top = 10
         Width = 98
         Height = 16
         Caption = 'COMBUST'#205'VEL'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel17: TRLLabel
+        Left = 610
+        Top = 10
+        Width = 57
+        Height = 16
+        Caption = 'TANQUE'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
@@ -435,6 +457,10 @@ object _FrmRelatorio: T_FrmRelatorio
     end
     object ClientDataSet1DATA: TDateField
       FieldName = 'DATA'
+    end
+    object ClientDataSet1NOMETANQUE: TWideMemoField
+      FieldName = 'NOMETANQUE'
+      BlobType = ftWideMemo
     end
   end
   object DataSetProvider1: TDataSetProvider
